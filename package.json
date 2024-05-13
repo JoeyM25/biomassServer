@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "axios": "^1.6.8",
     "by": "^0.2.3",
     "cookie-parser": "~1.4.4",
     "debug": "^4.3.4",
@@ -19,6 +20,5 @@
   "main": "app.js",
   "author": "",
   "license": "ISC",
-  "devDependencies": {},
   "description": ""
 }
