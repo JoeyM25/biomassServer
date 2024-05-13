@@ -5,6 +5,9 @@
   "scripts": {
     "start": "node ./bin/www"
   },
+  "devDependencies": {
+    "parcel": "^2.12.0"
+  },
   "dependencies": {
     "axios": "^1.6.8",
     "by": "^0.2.3",
@@ -15,7 +18,9 @@
     "express": "^4.19.2",
     "http-errors": "^2.0.0",
     "morgan": "^1.10.0",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "@cubejs-client/core": "0.35.23",
+    "chart.js": "4.4.2"
   },
   "main": "app.js",
   "author": "",
