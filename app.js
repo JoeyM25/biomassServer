@@ -3,8 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+<<<<<<< Updated upstream
 var axios = require('axios');
 
+=======
+var request = require('request');
+>>>>>>> Stashed changes
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -42,6 +46,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+<<<<<<< Updated upstream
 
 app.get('/data', async (req, res) => {
   try {
@@ -63,6 +68,22 @@ app.get('/data', async (req, res) => {
     console.error('Error fetching data:', error);
     res.status(500).json({ error: 'Failed to get data'});
   }
+=======
+app.get('/', function (req, res, next){
+request.get('https://api.eia.gov/v2/densified-biomass/sales-and-price-by-region/data/?frequency=monthly&data[0]=average-price&sort[0][column]=period&sort[0][direction]=desc&offset=0&length=5000&api_key=OPlKTwIrfvaVs6g1zxv1nYuKcxeweJcXnpN8c4iz', 
+  function(err, response, body){
+    if (err){
+      return next(err);
+    }
+    if (response.statusCode != 200) {
+      return next(new Error('Failed to get data from API'));
+    }
+
+    var data = JSON.parse(body);
+    var records = data.result.records;
+    res.render('home', { records: records});
+  });  
+>>>>>>> Stashed changes
 });
 
 module.exports = app;
