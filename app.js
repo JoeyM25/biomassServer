@@ -10,6 +10,9 @@ var axios = require('axios');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var mydataRouter = require('./routes/mydata');
+var priceByRegionRouter = require('./routes/priceByRegion')
+var QandAPofDBRouter = require('./routes/QandAPofDB')
+var forestResiduesRouter = require('./routes/forestResidues')
 
 var app = express();
 
@@ -26,6 +29,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/mydata', mydataRouter);
+app.use('/priceByRegion', priceByRegionRouter)
+app.use('/QandAPofDB', QandAPofDBRouter)
+app.use('/forestResidues', forestResiduesRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -44,7 +50,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-app.get('/data', async (req, res) => {
+/*app.get('/data', async (req, res) => {
   try {
     const response = await axios.get('https://api.eia.gov/v2/densified-biomass/sales-and-price-by-region/data/?frequency=monthly&data[0]=average-price&sort[0][column]=period&sort[0][direction]=desc&offset=0&length=5000&api_key=OPlKTwIrfvaVs6g1zxv1nYuKcxeweJcXnpN8c4iz');
     const value = response.data;
@@ -64,6 +70,6 @@ app.get('/data', async (req, res) => {
     console.error('Error fetching data:', error);
     res.status(500).json({ error: 'Failed to get data'});
   }
-});
+});*/
 
 module.exports = app;

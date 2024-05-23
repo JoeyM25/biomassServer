@@ -1,0 +1,63 @@
+extends layout
+
+block content
+  h1= title
+  
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js")
+
+  canvas(id="forestResChart" height="100")
+
+  //- Directly embed the SVG content
+  svg(width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg")
+    title Map of Missouri Counties
+    g(id="counties")
+      //- Example paths for two counties
+      path(id="adair" d="M10,10 L50,10 L50,50 L10,50 Z" class="county" data-name="Adair County" data-info="Population: 25,000")
+      path(id="andrew" d="M60,10 L100,10 L100,50 L60,50 Z" class="county" data-name="Andrew County" data-info="Population: 17,000")
+      //- Add the rest of the counties here by copying the paths from the SVG file
+
+  div#tooltip.tooltip(style="display:none")
+
+  script.
+    var ctx = document.getElementById("forestResChart").getContext('2d');
+
+    var forestResChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Example Data'],
+        datasets: [{
+          label: 'Forest Resources',
+          data: [12],
+          backgroundColor: ['rgba(75, 192, 192, 0.2)'],
+          borderColor: ['rgba(75, 192, 192, 1)'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    // JavaScript to handle hover events
+    document.querySelectorAll('.county').forEach(function(county) {
+      county.addEventListener('mouseenter', function(event) {
+        var tooltip = document.getElementById('tooltip');
+        tooltip.innerHTML = `<strong>${event.target.dataset.name}</strong><br>${event.target.dataset.info}`;
+        tooltip.style.display = 'block';
+        tooltip.style.left = event.pageX + 'px';
+        tooltip.style.top = event.pageY + 'px';
+      });
+      county.addEventListener('mousemove', function(event) {
+        var tooltip = document.getElementById('tooltip');
+        tooltip.style.left = event.pageX + 'px';
+        tooltip.style.top = event.pageY + 'px';
+      });
+      county.addEventListener('mouseleave', function() {
+        var tooltip = document.getElementById('tooltip');
+        tooltip.style.display = 'none';
+      });
+    });

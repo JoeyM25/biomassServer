@@ -1,0 +1,89 @@
+extends layout
+
+block content
+  h1= title
+  body
+    canvas(id="myChart" height="100")
+
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js")
+
+    script.
+      var ctx = document.getElementById("myChart")
+
+      var myChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: [],
+          datasets: [{
+            label: 'Avg price',
+            data: [],
+            backgroundColor: ["#155C6B", "#D45707", "#72198C", "#087B24"],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          legend: {display: false},
+          title: {
+            display: true,
+            text: 'Aver price by reg'
+          },
+          scales: {
+            xAxes: [{
+              ticks: {
+                autoSkip: false
+              },
+              scaleLabel: {
+                display: true,
+                labelString: 'Region'
+              }
+            }],
+            yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Average Price'
+              },
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }
+      });
+
+      fetch('https://api.eia.gov/v2/densified-biomass/sales-and-price-by-region/data/?frequency=monthly&data[0]=average-price&sort[0][column]=period&sort[0][direction]=desc&offset=0&length=5000&api_key=OPlKTwIrfvaVs6g1zxv1nYuKcxeweJcXnpN8c4iz')
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        const customOrder = ["EAST", "SOUTH", "WEST", "US-TOTAL"];
+        const regionData = {};
+
+        customOrder.forEach(region => {
+          regionData[region] = [];
+        });
+
+        data.response.data.forEach(entry => {
+          const region = entry.region;
+          const averagePrice = parseFloat(entry['average-price']);
+
+          if (regionData.hasOwnProperty(region)){
+            regionData[region].push(averagePrice);
+          }
+        });
+
+        const averagedPrices = {};
+
+        Object.keys(regionData).forEach(region => {
+          const prices = regionData[region];
+          const average = prices.reduce((sum, price) => sum + price, 0) / prices.length;
+          averagedPrices[region] = average;
+        });
+
+        var labels = Object.keys(averagedPrices);
+        var prices = labels.map(region => averagedPrices[region]);
+
+        myChart.data.labels = labels;
+        myChart.data.datasets[0].data = prices;
+
+        myChart.update()
+      });
