@@ -5,13 +5,18 @@ block content
   
   script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js")
 
-  canvas(id="forestResChart" height="100")
+  img(src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Blank_map_of_Missouri_with_counties.svg" alt="Map" usemap="#workmap")
 
-  svg(width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg")
+  map(name="workmap")
+    <area target="" alt="" title="" href="" coords="110,40,179,42,182,58,180,89,139,89,124,82,121,55" shape="poly">
+    <area target="" alt="" title="" href="" coords="177,40,250,46,248,59,253,71,251,114,197,113,195,93,182,92,183,59" shape="poly">
+    <area target="" alt="" title="" href="" coords="251,46,297,46,300,61,299,74,256,73" shape="poly">
+    <area target="" alt="" title="" href="" coords="302,45,354,46,355,116,299,114" shape="poly">
+    <area target="" alt="" title="" href="" coords="355,46,401,45,403,95,355,95" shape="poly">
 
-    h1 Map of MO 
-    g(id="counties")
-      path(id="adair" d="M10,10 L50,10 L50,50 L10,50 Z" class="county" data-name="Adair County" data-info="BAlls")
+  h1 Map of MO 
+  g(id="counties")
+    path(id="adair" d="M10,10 L50,10 L50,50 L10,50 Z" class="county" data-name="Adair County" data-info="BAlls")
 
   script.
     var ctx = document.getElementById("forestResChart")
