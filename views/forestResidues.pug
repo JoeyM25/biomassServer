@@ -2,25 +2,75 @@ extends layout
 
 block content
   h1= title
-  
+
   script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js")
 
-  img(src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Blank_map_of_Missouri_with_counties.svg" alt="Map" usemap="#workmap")
-
-  map(name="workmap")
-    <area target="" alt="" title="" href="" coords="110,40,179,42,182,58,180,89,139,89,124,82,121,55" shape="poly">
-    <area target="" alt="" title="" href="" coords="177,40,250,46,248,59,253,71,251,114,197,113,195,93,182,92,183,59" shape="poly">
-    <area target="" alt="" title="" href="" coords="251,46,297,46,300,61,299,74,256,73" shape="poly">
-    <area target="" alt="" title="" href="" coords="302,45,354,46,355,116,299,114" shape="poly">
-    <area target="" alt="" title="" href="" coords="355,46,401,45,403,95,355,95" shape="poly">
-
-  h1 Map of MO 
-  g(id="counties")
-    path(id="adair" d="M10,10 L50,10 L50,50 L10,50 Z" class="county" data-name="Adair County" data-info="BAlls")
-
   script.
-    var ctx = document.getElementById("forestResChart")
+    document.addEventListener('DOMContentLoaded', function() {
+      var images = document.querySelectorAll('img[usemap]');
+      images.forEach(function(image) {
+        var mapid = image.getAttribute('usemap').substr(1);
+        var imagewidth = image.naturalWidth;
+        var imageheight = image.naturalHeight;
+        var imagemap = document.querySelector('map[name="'+mapid+'"]');
+        var areas = imagemap.querySelectorAll('area');
+        image.removeAttribute('usemap');
+        imagemap.remove();
+        
+        // create wrapper container
+        var wrapper = document.createElement('div');
+        wrapper.classList.add('imagemap');
+        image.parentNode.insertBefore(wrapper, image);
+        wrapper.appendChild(image);
+        
+        // create SVG overlay
+        var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('viewBox', `0 0 ${imagewidth} ${imageheight}`);
+        svg.setAttribute('class', 'svg-overlay');
+        wrapper.appendChild(svg);
+        
+        areas.forEach(function(area) {
+          var coords = area.getAttribute('coords').split(',').map(Number);
+          if (area.getAttribute('shape') === 'poly') {
+            var pointsAttr = '';
+            for (var i = 0; i < coords.length; i += 2) {
+              var x = coords[i];
+              var y = coords[i + 1];
+              pointsAttr += `${x},${y} `;
+            }
+            var polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+            polygon.setAttribute('points', pointsAttr.trim());
+            polygon.setAttribute('class', 'area');
+            polygon.setAttribute('data-href', area.getAttribute('href'));
+            polygon.setAttribute('title', area.getAttribute('title'));
+            svg.appendChild(polygon);
+          }
+        });
+        
+        // Add click event listener to SVG polygons
+        svg.addEventListener('click', function(event) {
+          if (event.target.tagName === 'polygon') {
+            var href = event.target.getAttribute('data-href');
+            if (href) {
+              window.location.href = href;
+            }
+          }
+        });
+      });
+    });
 
-    var forestResChart = new Chart(ctx, {
+  style.
+    .imagemap {position: relative; display: inline-block; width: 100%; height: auto;}
+    .imagemap img {display: block; width: 100%; height: auto;}
+    .svg-overlay {position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;}
+    .area {fill: rgba(255, 0, 0, 0.3); stroke: rgba(255, 0, 0, 0.5); stroke-width: 1; pointer-events: all; transition: fill 0.15s ease-in-out, stroke 0.15s ease-in-out;}
+    .area:hover {fill: rgba(255, 0, 0, 0.5); stroke: rgba(255, 0, 0, 0.7);}
 
-    })
+  img(src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Blank_map_of_Missouri_with_counties.svg" alt="Map" usemap="#image-map" width="800" height="600")
+
+  map(name="image-map")
+    area(target="" alt="" title="one" href="/" coords="110,40,179,42,182,58,180,89,139,89,124,82,121,55" shape="poly")
+    area(target="" alt="" title="two" href="/" coords="177,40,250,46,248,59,253,71,251,114,197,113,195,93,182,92,183,59" shape="poly")
+    area(target="" alt="" title="" href="/" coords="251,46,297,46,300,61,299,74,256,73" shape="poly")
+    area(target="" alt="" title="" href="/" coords="302,45,354,46,355,116,299,114" shape="poly")
+    area(target="" alt="" title="" href="/" coords="355,46,401,45,403,95,355,95" shape="poly")
