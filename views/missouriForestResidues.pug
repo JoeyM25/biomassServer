@@ -1,0 +1,357 @@
+extends layout
+
+block content
+  h1= title
+
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js")
+
+  style.
+    .imagemap {
+      position: relative; 
+      display: inline-block; 
+      width: 100%; 
+      height: auto;
+    }
+    .imagemap img {
+      display: block; 
+      width: 50%; 
+      height: auto;
+    }
+    .svg-overlay {
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      width: 110%; 
+      height: 107%; 
+      pointer-events: none;
+    }
+    .area {
+      stroke-width: 1; 
+      pointer-events: all; 
+      transition: fill 0.15s ease-in-out, stroke 0.15s ease-in-out;
+    }
+    .hide{
+      display: none;
+    }
+
+  img(src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Blank_map_of_Missouri_with_counties.svg" alt="Map" usemap="#image-map" width="400" height="300")
+
+  div(class ="imagemap")
+    map(name="image-map" id="moMap")
+      <area shape="poly" coords="102,35,168,38,170,86,127,84,116,63"  nohref="nohref" title="Atchison" id="Atchison"/>
+      <area shape="poly" coords="168,38,233,41,234,108,184,107,181,87,170,86"  nohref="nohref" title="Nodaway" id="Nodaway"/>
+      <area shape="poly" coords="234,41,279,42,280,71,234,70"  nohref="nohref" title="Worth" id="Worth"/>
+      <area shape="poly" coords="236,69,233,122,280,123,280,71"  nohref="nohref" title="Gentry" title="Gentry" id="Gentry"/>
+      <area shape="poly" coords="127,85,141,119,165,140,177,145,185,146,189,133,181,86"  nohref="nohref" title="Holt" id="Holt"/>
+      <area shape="poly" coords="280,108,332,110,331,42,279,42"  nohref="nohref" title="Harrison" id="Harrison"/>
+      <area shape="poly" coords="331,42,377,42,378,90,332,89"  nohref="nohref" title="Mercer" id="Mercer"/>
+      <area shape="poly" coords="377,42,378,72,437,73,437,79,457,79,456,41"  nohref="nohref" title="Putnam" id="Putnam"/>
+      <area shape="poly" coords="378,72,378,125,437,125,437,73"  nohref="nohref" title="Sullivan" id="Sullivan"/>
+      <area shape="poly" coords="332,89,331,135,378,135,377,90"  nohref="nohref" title="Grundy" id="Grundy"/>
+      <area shape="poly" coords="455,41,495,41,495,79,455,79"  nohref="nohref" title="Schuyler" id="Schuyler"/>
+      <area shape="poly" coords="494,40,541,40,541,85,494,85"  nohref="nohref" title="Scotland" id="Scotland"/>
+      <area shape="poly" coords="495,84,541,84,541,137,495,137"  nohref="nohref" title="Knox" id="Knox"/>
+      <area shape="poly" coords="437,79,495,79,495,125,437,125"  nohref="nohref" title="Adair" id="Adair"/>
+      <area shape="poly" coords="541,92,601,92,601,138,541,138"  nohref="nohref" title="Lewis" id="Lewis"/>
+      <area shape="poly" coords="541,39,566,38,579,48,590,62,603,73,593,92,542,91"  nohref="nohref" title="Clark" id="Clark"/>
+      <area shape="poly" coords="601,138,604,142,600,150,610,159,616,177,568,177,568,181,554,181,554,138"  nohref="nohref" title="Marion" id="Marion"/>
+      <area shape="poly" coords="502,137,501,191,515,190,514,181,554,181,554,138"  nohref="nohref" title="Shelby" id="Shelby"/>
+      <area shape="poly" coords="437,125,436,176,456,175,456,189,500,189,502,138,495,137,495,126"  nohref="nohref" title="Macon" id="Macon"/>
+      <area shape="poly" coords="500,189,500,229,570,229,569,181,514,182,515,190"  nohref="nohref" title="Monroe" id="Monroe"/>
+      <area shape="poly" coords="569,177,617,177,629,190,598,213,602,233,569,231"  nohref="nohref" title="Ralls" id="Ralls"/>
+      <area shape="poly" coords="454,188,453,232,486,243,500,243,500,189"  nohref="nohref" title="Randolph" id="Randolph"/>
+      <area shape="poly" coords="234,122,281,122,281,166,234,166"  nohref="nohref" title="DeKalb" id="DeKalb"/>
+      <area shape="poly" coords="280,108,331,108,331,161,280,161"  nohref="nohref" title="Daviess" id="Daviess"/>
+      <area shape="poly" coords="377,125,436,125,436,176,377,176"  nohref="nohref" title="Linn" id="Linn"/>
+      <area shape="poly" coords="279,160,331,160,331,200,279,200"  nohref="nohref" title="Caldwell" id="Caldwell"/>
+      <area shape="poly" coords="233,165,278,165,278,210,233,210"  nohref="nohref" title="Clinton" id="Clinton"/>
+      <area shape="poly" coords="331,135,331,188,388,187,388,176,377,176,377,135"  nohref="nohref" title="Livingston" id="Livingston"/>
+      <area shape="poly" coords="388,176,390,214,406,218,406,222,411,225,411,232,425,233,429,248,438,245,444,229,453,233,455,176,455,175"  nohref="nohref" title="Chariton" id="Chariton"/>
+      <area shape="poly" coords="331,187,330,248,337,249,344,242,362,247,364,235,376,246,380,234,406,222,388,212,387,188"  nohref="nohref" title="Carroll" id="Carroll"/>
+      <area shape="poly" coords="184,107,189,142,202,154,234,154,234,109"  nohref="nohref" title="Andrew" id="Andrew"/>
+      <area shape="poly" coords="202,153,174,189,174,197,233,197,234,154"  nohref="nohref" title="Buchanan" id="Buchanan"/>
+      <area shape="poly" coords="174,197,198,234,205,245,214,251,232,254,233,197"  nohref="nohref" title="Platte" id="Platte"/>
+      <area shape="poly" coords="232,210,278,210,277,248,270,243,259,254,247,260,242,256,232,261"  nohref="nohref" title="Clay" id="Clay"/>
+      <area shape="poly" coords="278,200,278,247,293,259,321,247,330,248,331,200"  nohref="nohref" title="Ray" id="Ray"/>
+      <area shape="poly" coords="231,260,230,301,288,304,290,257,270,243,259,254,247,260,242,256"  nohref="nohref" title="Jackson" id="Jackson"/>
+      <area shape="poly" coords="290,257,289,292,320,293,320,288,361,290,362,247,344,242,337,249,321,247,293,259"  nohref="nohref" title="Lafayette" id="Lafayette"/>
+      <area shape="poly" coords="362,246,361,289,414,291,413,284,430,267,437,246,429,248,424,233,413,233,406,223,380,234,376,246,364,235"  nohref="nohref" title="Saline" id="Saline"/>
+      <area shape="poly" coords="444,229,430,267,427,272,436,284,471,285,486,244"  nohref="nohref" title="Howard" id="Howard"/>
+      <area shape="poly" coords="426,272,413,285,412,326,463,328,478,292,470,286,434,283"  nohref="nohref" title="Cooper" id="Cooper"/>
+      <area shape="poly" coords="486,243,523,244,523,271,519,271,517,297,520,309,511,327,510,334,493,328,490,307,470,285"  nohref="nohref" title="Boone" id="Boone"/>
+      <area shape="poly" coords="500,229,602,232,605,258,579,258,579,271,523,271,524,244,500,244"  nohref="nohref" title="Audrain" id="Audrain"/>
+      <area shape="poly" coords="630,189,685,245,631,245,631,259,605,258,598,213"  nohref="nohref" title="Pike" id="Pike"/>
+      <area shape="poly" coords="685,245,692,288,658,296,657,299,640,298,641,290,632,290,631,281,622,281,622,259,631,259,631,245"  nohref="nohref" title="Lincoln" id="Lincoln"/>
+      <area shape="poly" coords="579,258,579,324,590,329,604,323,605,304,623,304,622,258"  nohref="nohref" title="Montgomery" id="Montgomery"/>
+      <area shape="poly" coords="692,288,704,299,715,289,716,284,723,283,759,300,758,306,742,301,736,294,727,306,720,304,708,326,692,326,665,350,658,347,658,296,676,297,677,291"  nohref="nohref" title="St. Charles" id="St. Charles"/>
+      <area shape="poly" coords="758,306,739,324,734,340,742,349,738,365,732,370,732,360,723,359,724,354,702,354,686,357,686,333,694,326,710,326,720,304,730,304,736,294,742,301"  nohref="nohref" title="St. Louis" id="St. Louis"/>
+      <area shape="poly" coords="747,317,751,332,742,348,734,339,739,325"  nohref="nohref" title="St. Louis City" id="St. Louis City"/>
+      <area shape="poly" coords="686,334,681,398,611,400,611,325,616,323,627,334,643,339,665,350,686,334"  nohref="nohref" title="Franklin" id="Franklin"/>
+      <area shape="poly" coords="622,281,631,281,631,290,641,290,641,299,658,299,658,347,642,338,627,334,616,323,610,325,604,322,605,304,623,304"  nohref="nohref" title="Warren" id="Warren"/>
+      <area shape="poly" coords="578,325,590,329,604,322,610,325,611,400,592,399,592,407,578,407"  nohref="nohref" title="Gasconade" id="Gasconade"/>
+      <area shape="poly" coords="579,271,520,271,520,311,510,336,520,346,534,347,552,332,571,324,578,325"  nohref="nohref" title="Callaway" id="Callaway"/>
+      <area shape="poly" coords="578,325,578,388,513,387,515,375,517,360,534,361,533,347,554,331"  nohref="nohref" title="Osage" id="Osage"/>
+      <area shape="poly" coords="513,380,488,379,488,367,478,366,490,321,501,332,511,334,517,345,533,347,534,360,516,360,522,371"  nohref="nohref" title="Cole" id="Cole"/>
+      <area shape="poly" coords="478,366,490,320,490,307,478,293,463,329,437,328,438,342,462,366"  nohref="nohref" title="Moniteau" id="Moniteau"/>
+      <area shape="poly" coords="437,328,411,326,410,390,423,401,446,402,448,398,454,397,455,378,461,378,462,366,438,341"  nohref="nohref" title="Morgan" id="Morgan"/>
+      <area shape="poly" coords="513,387,580,387,580,426,513,426"  nohref="nohref" title="Maries" id="Maries"/>
+      <area shape="poly" coords="462,366,461,378,455,378,454,397,476,428,514,428,514,380,488,379,488,367"  nohref="nohref" title="Miller" id="Miller"/>
+      <area shape="poly" coords="288,290,359,290,359,346,288,346"  nohref="nohref" title="Johnson" id="Johnson"/>
+      <area shape="poly" coords="361,289,411,289,411,352,361,352"  nohref="nohref" title="Pettis" id="Pettis"/>
+      <area shape="poly" coords="357,351,410,351,410,421,357,421"  nohref="nohref" title="Benton" id="Benton"/>
+      <area shape="poly" coords="293,346,357,346,357,399,293,399"  nohref="nohref" title="Henry" id="Henry"/>
+      <area shape="poly" coords="228,357,292,357,292,422,228,422"  nohref="nohref" title="Bates" id="Bates"/>
+      <area shape="poly" coords="230,301,228,356,292,361,293,344,286,343,287,303"  nohref="nohref" title="Cass" id="Cass"/>
+      <area shape="poly" coords="226,421,289,421,289,482,226,482"  nohref="nohref" title="Vernon" id="Vernon"/>
+      <area shape="poly" coords="224,480,287,480,287,526,224,526"  nohref="nohref" title="Barton" id="Barton"/>
+      <area shape="poly" coords="289,493,343,493,343,537,289,537"  nohref="nohref" title="Dade" id="Dade"/>
+      <area shape="poly" coords="343,458,396,458,396,518,343,518"  nohref="nohref" title="Polk" id="Polk"/>
+      <area shape="poly" coords="293,398,357,399,357,442,350,443,349,456,322,455,321,446,291,445"  nohref="nohref" title="St. Clair" id="St. Clair"/>
+      <area shape="poly" coords="291,445,289,492,343,493,343,456,322,455,321,446"  nohref="nohref" title="Cedar" id="Cedar"/>
+      <area shape="poly" coords="410,420,409,445,395,446,396,458,350,458,350,443,357,441,358,421"  nohref="nohref" title="Hickory" id="Hickory"/>
+      <area shape="poly" coords="410,390,423,401,446,402,454,397,476,428,488,428,488,451,483,457,470,461,463,447,409,445"  nohref="nohref" title="Camden" id="Camden"/>
+      <area shape="poly" coords="488,428,534,429,534,490,508,490,507,483,487,474"  nohref="nohref" title="Pulaski" id="Pulaski"/>
+      <area shape="poly" coords="395,445,435,447,435,508,408,508,408,518,396,518"  nohref="nohref" title="Dallas" id="Dallas"/>
+      <area shape="poly" coords="435,446,435,508,507,510,507,483,487,474,488,452,483,457,470,461,463,447"  nohref="nohref" title="Laclede" id="Laclede"/>
+      <area shape="poly" coords="580,407,593,407,593,463,559,462,560,490,534,490,535,429,542,429,542,425,581,422"  nohref="nohref" title="Phelps" id="Phelps"/>
+      <area shape="poly" coords="592,399,644,400,644,469,638,469,638,475,619,475,619,462,594,463"  nohref="nohref" title="Crawford" id="Crawford"/>
+      <area shape="poly" coords="559,462,619,463,619,476,638,476,637,492,619,491,619,505,631,505,632,518,566,516,566,490,561,490"  nohref="nohref" title="Dent" id="Dent"/>
+      <area shape="poly" coords="686,357,703,354,724,354,723,358,732,361,729,388,745,410,725,422,702,429,701,418,681,399"  nohref="nohref" title="Jefferson" id="Jefferson"/>
+      <area shape="poly" coords="644,399,680,398,698,418,698,469,644,469"  nohref="nohref" title="Washington" id="Washington"/>
+      <area shape="poly" coords="697,417,701,417,701,428,725,422,736,431,720,447,752,478,757,473,762,477,758,482,698,483"  nohref="nohref" title="St. Francois" id="St. Francois"/>
+      <area shape="poly" coords="744,410,781,432,784,434,777,438,782,446,762,478,757,473,752,478,720,447,736,431,725,422"  nohref="nohref" title="Ste. Genevieve" id="Ste. Genevieve"/>
+      <area shape="poly" coords="782,446,788,447,793,441,799,444,800,448,806,449,816,457,815,464,823,465,828,470,833,471,838,488,759,489,759,482"  nohref="nohref" title="Perry" id="Perry"/>
+      <area shape="poly" coords="711,482,759,482,759,532,711,532"  nohref="nohref" title="Madison" id="Madison"/>
+      <area shape="poly" coords="832,489,846,515,845,524,835,530,838,537,818,546,806,558,794,558,793,488"  nohref="nohref" title="Cape Girardeau" id="Cape Girardeau"/>
+      <area shape="poly" coords="759,489,793,488,794,558,783,559,783,569,765,572,765,565,752,565,751,532,759,531"  nohref="nohref" title="Bollinger" id="Bollinger"/>
+      <area shape="poly" coords="838,537,859,572,836,596,816,598,806,558,821,545"  nohref="nohref" title="Scott" id="Scott"/>
+      <area shape="poly" coords="711,531,751,532,751,565,765,566,765,571,760,572,748,590,696,591,690,573,684,572,685,559,689,554,690,538,712,538"  nohref="nohref" title="Wayne" id="Wayne"/>
+      <area shape="poly" coords="638,469,698,469,698,483,711,483,711,538,687,538,687,523,684,524,684,489,638,491"  nohref="nohref" title="Iron" id="Iron"/>
+      <area shape="poly" coords="619,491,684,489,684,524,687,523,689,554,684,573,662,572,662,565,655,565,653,555,643,550,639,541,636,517,632,518,631,504,619,505"  nohref="nohref" title="Reynolds" id="Reynolds"/>
+      <area shape="poly" coords="655,565,661,565,662,572,690,572,699,608,631,607,632,567"  nohref="nohref" title="Carter" id="Carter"/>
+      <area shape="poly" coords="631,597,579,597,579,518,636,518,639,543,643,550,653,555,655,565,631,567"  nohref="nohref" title="Shannon" id="Shannon"/>
+      <area shape="poly" coords="507,490,566,490,566,516,579,518,579,574,507,572"  nohref="nohref" title="Texas" id="Texas"/>
+      <area shape="poly" coords="407,508,455,508,455,569,407,569"  nohref="nohref" title="Webster" id="Webster"/>
+      <area shape="poly" coords="454,509,507,509,507,572,454,572"  nohref="nohref" title="Wright" id="Wright"/>
+      <area shape="poly" coords="428,571,526,571,526,611,428,611"  nohref="nohref" title="Douglas" id="Douglas"/>
+      <area shape="poly" coords="223,524,290,524,290,572,223,572"  nohref="nohref" title="Jasper" id="Jasper"/>
+      <area shape="poly" coords="290,536,343,536,343,591,290,591"  nohref="nohref" title="Lawrence" id="Lawrence"/>
+      <area shape="poly" coords="343,517,408,517,408,567,343,567"  nohref="nohref" title="Greene" id="Greene"/>
+      <area shape="poly" coords="343,565,343,581,376,581,375,609,428,609,428,569,427,569"  nohref="nohref" title="Christian" id="Christian"/>
+      <area shape="poly" coords="222,571,288,571,288,616,222,616"  nohref="nohref" title="Newton" id="Newton"/>
+      <area shape="poly" coords="221,615,287,615,287,655,221,655"  nohref="nohref" title="McDonald" id="McDonald"/>
+      <area shape="poly" coords="379,609,445,609,445,657,379,657"  nohref="nohref" title="Taney" id="Taney"/>
+      <area shape="poly" coords="289,590,342,592,342,608,348,608,345,656,286,655"  nohref="nohref" title="Barry" id="Barry"/>
+      <area shape="poly" coords="343,581,376,581,375,609,379,609,379,656,345,655,348,608,343,607"  nohref="nohref" title="Stone" id="Stone"/>
+      <area shape="poly" coords="445,611,523,611,523,657,445,657"  nohref="nohref" title="Ozark" id="Ozark"/>
+      <area shape="poly" coords="526,572,578,572,578,657,526,657"  nohref="nohref" title="Howell" id="Howell"/>
+      <area shape="poly" coords="578,597,631,597,631,607,644,607,643,656,579,657"  nohref="nohref" title="Oregon" id="Oregon"/>
+      <area shape="poly" coords="644,607,703,607,704,628,709,627,709,640,711,654,644,655"  nohref="nohref" title="Ripley" id="Ripley"/>
+      <area shape="poly" coords="696,591,748,590,763,632,754,654,711,655,708,627,704,627,703,607,699,607,698,597"  nohref="nohref" title="Butler" id="Butler"/>
+      <area shape="poly" coords="783,559,806,558,816,598,816,632,763,633,748,589,760,572,778,571,783,569"  nohref="nohref" title="Stoddard" id="Stoddard"/>
+      <area shape="poly" coords="861,564,869,565,875,572,875,578,884,576,887,579,886,609,874,640,868,640,836,596,859,572"  nohref="nohref" title="Mississippi" id="Mississippi"/>
+      <area shape="poly" coords="816,598,836,596,861,631,856,632,849,655,844,658,843,652,845,645,842,639,832,640,834,649,838,656,836,662,841,668,836,676,828,664,813,663,811,670,785,670,785,633,816,632"  nohref="nohref" title="New Madrid" id="New Madrid"/>
+      <area shape="poly" coords="785,669,788,728,818,727,822,712,831,708,831,702,817,692,818,689,838,688,838,684,827,678,836,675,828,665,822,667,813,663,811,670"  nohref="nohref" title="Pemiscot" id="Pemiscot"/>
+      <area shape="poly" coords="762,633,785,633,787,727,736,730,746,711,754,707,754,701,768,687,773,683,771,668,763,665,761,654,754,654"  nohref="nohref" title="Dunklin" id="Dunklin"/>
+    div(class="hide" id="display")= Counties
+
+  table(class="table table-bordered")
+    thead
+      tr
+        th(scope="col") Key
+        th(scope="col") > 30
+        th(scope="col") 30 - 20
+        th(scope="col") 20 - 10
+        th(scope="col") 10 - 5
+        th(scope="col") 5 - 2.5
+        th(scope="col") 2.5 - 1
+        th(scope="col") Less than 1
+        th(scope="col") 0
+    tbody
+      tr
+        th(scope="row") Color
+        td
+          img(src="/images/darkgreen.png", alt="Green Square", height="25", width="25")
+        td
+          img(src="/images/lightGreen.png", alt="", height="25", width="25")
+        td
+          img(src="/images/yellow.png", alt="", height="25", width="25")
+        td
+          img(src="/images/lightYellow.png", alt="", height="25", width="25")
+        td
+          img(src="/images/darkOrange.png", alt="", height="25", width="25")
+        td
+          img(src="/images/lightOrangepng.png", alt="", height="25", width="25")
+        td
+          img(src="/images/red.png", alt="", height="25", width="25")
+        td
+          img(src="/images/darkRed.png", alt="", height="25", width="25")
+
+  div
+    -
+      let moForestRes = `dispatch(\"missouriForestResidues\")`
+      let iaForestRes = `dispatch(\"iowaForestResidues\")`
+      let ksForestRes = `dispatch(\"kansasForestResidues\")`
+    div
+      button(type="button" class="btn btn-primary" onClick=moForestRes) Go to Missouri Forest Residue
+      br
+      button(type="button" class="btn btn-primary" onClick=iaForestRes) Go to Iowa Forest Residues 
+      br
+      button(type="button" class="btn btn-primary" onClick=ksForestRes) Go to Kansas Forest Residues 
+
+    script.
+      function dispatch(path){
+        window.location.href=path
+      }  
+
+  script.
+    function toDict(keys, values){
+      var returnDict = []
+      for (let i = 0; i < keys.length; i++){
+        returnDict.push({key: keys[i], value: values[i]});
+      }
+      return returnDict;
+    }
+    
+    // Creating arrays for each attribute from the CSV
+    var countyText = "#{Counties}";
+    var countyArray = countyText.split(",");
+
+    var stateText = "#{States}";
+    var stateArray = stateText.split(",");
+
+    var tdtText = "#{TDT}";
+    var tdtArray = tdtText.split(",");
+
+    // Arrays to hold MO data
+    var testCounties = []
+    var testCountiesTDT = []
+
+    // Populating the arrays
+    for (let s = 0; s < stateArray.length; s++){
+      if (stateArray[s] == "Missouri"){
+        testCounties.push(countyArray[s])
+        testCountiesTDT.push(tdtArray[s])
+      }
+    }
+
+    // Creating the dictonary
+    var finalDict = toDict(testCounties, testCountiesTDT)
+
+    // Event Listener for hover of each area
+    document.addEventListener('DOMContentLoaded', function() {
+      var images = document.querySelectorAll('img[usemap]');
+      images.forEach(function(image) {
+        var mapid = image.getAttribute('usemap').substr(1);
+        var imagewidth = image.naturalWidth;
+        var imageheight = image.naturalHeight;
+        var imagemap = document.querySelector('map[name="'+mapid+'"]');
+        var areas = imagemap.querySelectorAll('area');
+        image.removeAttribute('usemap');
+        imagemap.remove();
+        
+        // create wrapper container
+        var wrapper = document.createElement('div');
+        wrapper.classList.add('imagemap');
+        image.parentNode.insertBefore(wrapper, image);
+        wrapper.appendChild(image);
+        
+        // create SVG overlay
+        var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('viewBox', `0 0 ${imagewidth} ${imageheight}`);
+        svg.setAttribute('class', 'svg-overlay');
+        wrapper.appendChild(svg);
+        
+        areas.forEach(function(area) {
+          var coords = area.getAttribute('coords').split(',').map(Number);
+          if (area.getAttribute('shape') === 'poly') {
+            var pointsAttr = '';
+            for (var i = 0; i < coords.length; i += 2) {
+              var x = coords[i] - 558;
+              var y = coords[i + 1] - 1;
+              pointsAttr += `${x},${y} `;
+            }
+            var polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+            polygon.setAttribute('points', pointsAttr.trim());
+            polygon.setAttribute('class', 'area');
+            polygon.setAttribute('data-href', area.getAttribute('href'));
+            polygon.setAttribute('title', area.getAttribute('title'));
+
+            for (let i = 0; i < finalDict.length; i++){
+              if (finalDict[i].key === area.getAttribute('title') && finalDict[i].value > 30){
+                polygon.setAttribute('fill', 'rgba(38, 106, 46, 1)');
+                polygon.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+                break;
+              }
+              else if (finalDict[i].key === area.getAttribute('title') && finalDict[i].value > 20){
+                polygon.setAttribute('fill', 'rgba(153, 204, 0, 1)');
+                polygon.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+                break;
+              }
+              else if (finalDict[i].key === area.getAttribute('title') && finalDict[i].value > 10){
+                polygon.setAttribute('fill', 'rgba(255, 204, 0, 1)');
+                polygon.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+                break;
+              }
+              else if (finalDict[i].key === area.getAttribute('title') && finalDict[i].value > 5){
+                polygon.setAttribute('fill', 'rgba(255, 255, 102, 1)');
+                polygon.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+                break;
+              }
+              else if (finalDict[i].key === area.getAttribute('title') && finalDict[i].value > 2.5){
+                polygon.setAttribute('fill', 'rgba(255, 102, 0, 1)');
+                polygon.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+                break;
+              }
+              else if (finalDict[i].key === area.getAttribute('title') && finalDict[i].value > 1){
+                polygon.setAttribute('fill', 'rgba(255, 153, 0, 1)');
+                polygon.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+                break;
+              }
+              else if (finalDict[i].key === area.getAttribute('title') && finalDict[i].value > 0){
+                polygon.setAttribute('fill', 'rgba(255, 0, 0, 1)');
+                polygon.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+                break;
+              }
+              else {
+                polygon.setAttribute('fill', 'rgba(204, 0, 0, 1)');
+                polygon.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+              }
+              
+            }
+
+            polygon.addEventListener('mouseover', showInfo);
+            polygon.addEventListener('mouseout', hideInfo);
+            svg.appendChild(polygon);
+          }
+        });
+        
+        // Add click event listener to SVG polygons
+        svg.addEventListener('click', function(event) {
+          if (event.target.tagName === 'polygon') {
+            var href = event.target.getAttribute('data-href');
+            if (href) {
+              window.location.href = href;
+            }
+          }
+        });
+      });
+    });
+    // Show and Hide Functions
+    function showInfo(event){
+      let county = event.target.attributes.title.nodeValue;
+          
+      document.getElementById("display").innerHTML = county + " ";
+
+      for (let i = 0; i < finalDict.length; i++){
+        if (finalDict[i].key == county){
+          document.getElementById("display").innerHTML += finalDict[i].value
+        }
+      }
+
+      document.querySelector('.hide').style.display = 'block';
+
+    }
+    function hideInfo(){
+      document.querySelector('.hide').style.display = 'none';
+    }

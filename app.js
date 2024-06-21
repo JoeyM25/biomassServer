@@ -12,7 +12,10 @@ var usersRouter = require('./routes/users');
 var mydataRouter = require('./routes/mydata');
 var priceByRegionRouter = require('./routes/priceByRegion')
 var QandAPofDBRouter = require('./routes/QandAPofDB')
-var forestResiduesRouter = require('./routes/forestResidues')
+var moForestResiduesRouter = require('./routes/missouriForestResidues')
+var iaForestResiduesRouter = require('./routes/iowaForestResidues')
+var ksForestResiduesRouter = require('./routes/kansasForestResidues')
+var testRouter = require('./routes/testOneTemplateThing')
 
 var app = express();
 
@@ -31,7 +34,10 @@ app.use('/users', usersRouter);
 app.use('/mydata', mydataRouter);
 app.use('/priceByRegion', priceByRegionRouter)
 app.use('/QandAPofDB', QandAPofDBRouter)
-app.use('/forestResidues', forestResiduesRouter)
+app.use('/missouriForestResidues', moForestResiduesRouter)
+app.use('/iowaForestResidues', iaForestResiduesRouter)
+app.use('/kansasForestResidues', ksForestResiduesRouter)
+app.use('/test', testRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -48,28 +54,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-
-/*app.get('/data', async (req, res) => {
-  try {
-    const response = await axios.get('https://api.eia.gov/v2/densified-biomass/sales-and-price-by-region/data/?frequency=monthly&data[0]=average-price&sort[0][column]=period&sort[0][direction]=desc&offset=0&length=5000&api_key=OPlKTwIrfvaVs6g1zxv1nYuKcxeweJcXnpN8c4iz');
-    const value = response.data;
-    
-    const customOrder = ["EAST", "SOUTH", "WEST", "US-TOTAL"];
-    value.data.sort((a, b) => customOrder.indexOf(a.region) - customOrder.indexOf(b.region));
-
-    const formattedData = {
-      labels: value.data.map(item => item.region),
-      values: value.data.map(item => item.average)
-    };
-
-    res.json(formattedData);
-
-  }
-  catch (error) {
-    console.error('Error fetching data:', error);
-    res.status(500).json({ error: 'Failed to get data'});
-  }
-});*/
 
 module.exports = app;
