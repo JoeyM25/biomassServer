@@ -14,6 +14,7 @@ html(lang="en")
         let moForestRes = `dispatch(\"missouriForestResidues\")`
         let iaForestRes = `dispatch(\"iowaForestResidues\")`
         let ksForestRes = `dispatch(\"kansasForestResidues\")`
+        let arForestRes = `dispatch(\"arkansasForestResidues\")`
       div
         button(type="button" class="btn btn-primary" onClick=priceBy) Go to Price by Region
         br
@@ -24,6 +25,8 @@ html(lang="en")
         button(type="button" class="btn btn-primary" onClick=iaForestRes) Go to Iowa Forest Residues 
         br
         button(type="button" class="btn btn-primary" onClick=ksForestRes) Go to Kansas Forest Residues 
+        br
+        button(type="button" class="btn btn-primary" onClick=arForestRes) Go to Arkansas Forest Residues 
 
     script.
       function dispatch(path){
