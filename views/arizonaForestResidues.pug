@@ -12,7 +12,7 @@ block content
     }
     .imagemap img {
       display: block; 
-      width: 50%; 
+      width: 45%; 
       height: auto;
     }
     .svg-overlay {
@@ -20,7 +20,7 @@ block content
       top: 0; 
       left: 0; 
       width: 110%; 
-      height: 107%; 
+      height: 100%; 
       pointer-events: none;
     }
     .area {
@@ -33,12 +33,27 @@ block content
     }
 
   //Fill in the src for the state svg
-  img(src="" alt="Map" usemap="#image-map" width="400" height="300")
+  img(src="https://upload.wikimedia.org/wikipedia/commons/8/85/2010_United_States_Senate_election_in_Arizona_results_map_by_county.svg" alt="Map" usemap="#image-map" width="400" height="300")
 
   //Replace id with state map id and fill in the areas as children of the map
   div(class ="imagemap")
-    map(name="image-map" id="")
-      
+    map(name="image-map" id="azMap")
+      <area shape="poly" coords="164,7,333,10,336,17,324,41,324,67,320,73,325,94,311,106,258,127,258,134,254,138,246,134,240,142,245,169,243,173,240,386,235,389,217,386,209,396,200,401,193,395,179,398,179,393,157,392,151,386,146,386,141,377,133,375,123,364,117,364,119,352,108,326,91,305,90,269,99,266,94,228,87,214,89,212,87,168,91,164,83,152,83,133,102,125,125,126,138,144,152,144,163,120"  nohref="nohref" title="Mohave" id="Mohave"/>
+      <area shape="poly" coords="333,10,535,9,539,390,530,389,528,393,521,388,499,375,496,377,480,368,467,370,462,378,461,367,457,373,448,373,452,368,446,364,447,318,420,319,419,293,356,295,356,270,344,270,344,254,329,258,321,249,287,240,261,219,242,215,243,171,245,168,240,142,246,134,253,138,258,134,258,127,311,106,325,94,320,73,323,68,324,41,336,16"  nohref="nohref" title="Coconino" id="Coconino"/>
+      <area shape="poly" coords="535,9,619,8,623,195,643,194,643,215,645,459,641,460,642,489,629,487,628,429,539,430,540,430"  nohref="nohref" title="Navajo" id="Navajo"/>
+      <area shape="poly" coords="619,8,728,6,740,457,706,457,703,467,694,468,683,480,678,480,657,501,642,490,641,460,646,458,642,194,623,195"  nohref="nohref" title="Apache" id="Apache"/>
+      <area shape="poly" coords="740,457,746,647,736,646,723,633,724,612,712,589,709,588,690,556,687,475,694,468,703,467,706,457"  nohref="nohref" title="Greenlee" id="Greenlee"/>
+      <area shape="poly" coords="687,476,683,480,677,480,656,501,642,490,628,487,629,504,610,504,577,516,576,532,581,543,577,542,579,649,736,646,723,633,724,612,712,589,708,587,690,555"  nohref="nohref" title="Graham" id="Graham"/>
+      <area shape="poly" coords="628,429,540,430,539,391,531,389,528,394,499,375,497,376,479,368,467,370,462,378,461,367,457,373,447,373,451,369,446,363,446,371,435,376,428,410,456,410,454,430,458,430,468,462,466,467,485,484,494,475,517,525,518,534,539,572,545,565,545,559,558,549,577,543,581,543,577,532,577,515,610,504,629,503"  nohref="nohref" title="Gila" id="Gila"/>
+      <area shape="poly" coords="446,318,420,319,419,293,356,294,356,270,343,270,344,254,328,259,321,249,285,240,260,218,241,214,239,430,310,431,364,447,376,424,424,431,455,431,456,410,428,410,432,392,435,376,446,371"  nohref="nohref" title="Yavapai" id="Yavapai"/>
+      <area shape="poly" coords="239,386,235,389,217,386,209,397,199,401,193,395,179,397,179,393,156,392,152,385,146,386,146,392,133,402,127,404,110,414,110,425,100,434,101,470,98,471,98,491,86,503,85,508,75,510,77,520,72,524,79,529,76,551,79,562,127,564,128,502,165,503,164,516,238,518"  nohref="nohref" title="La Paz" id="La Paz"/>
+      <area shape="poly" coords="458,429,455,431,424,431,376,424,364,447,310,431,238,430,236,640,370,640,371,529,386,542,443,542,444,506,508,506,494,475,485,484,466,467,468,461,458,430"  nohref="nohref" title="Maricopa" id="Maricopa"/>
+      <area shape="poly" coords="236,518,164,516,164,502,127,503,127,565,97,562,104,584,95,595,95,601,85,605,77,602,61,619,61,638,236,704"  nohref="nohref" title="Yuma" id="Yuma"/>
+      <area shape="poly" coords="507,505,443,505,443,541,386,542,371,529,370,639,579,638,577,543,559,549,545,558,545,564,540,573,518,534,517,525"  nohref="nohref" title="Pinal" id="Pinal"/>
+      <area shape="poly" coords="745,646,578,649,579,802,750,799"  nohref="nohref" title="Cochise" id="Cochise"/>
+      <area shape="poly" coords="578,747,494,748,495,777,470,778,470,790,505,803,580,804"  nohref="nohref" title="Santa Cruz" id="Santa Cruz"/>
+      <area shape="poly" coords="578,637,237,640,235,706,470,791,471,777,495,777,494,747,578,746"  nohref="nohref" title="Pima" id="Pima"/>
+
     div(class="hide" id="display")
 
   table(class="table table-bordered")
@@ -224,7 +239,7 @@ block content
     // Populating the arrays
     for (let s = 0; s < stateArray.length; s++){
       // Replace with state name
-      if (stateArray[s] == ""){
+      if (stateArray[s] == "Arizona"){
         testCounties.push(countyArray[s])
         testCountiesTDT.push(tdtArray[s])
       }
@@ -262,8 +277,8 @@ block content
           if (area.getAttribute('shape') === 'poly') {
             var pointsAttr = '';
             for (var i = 0; i < coords.length; i += 2) {
-              var x = coords[i] - 558;
-              var y = coords[i + 1] - 1;
+              var x = coords[i] - 583;
+              var y = coords[i + 1] + 2;
               pointsAttr += `${x},${y} `;
             }
             var polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
