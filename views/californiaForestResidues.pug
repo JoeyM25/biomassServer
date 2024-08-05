@@ -1,0 +1,409 @@
+extends layout
+
+block content
+  h1= title
+
+  style.
+    .imagemap {
+      position: relative; 
+      display: inline-block; 
+      width: 100%; 
+      height: auto;
+    }
+    .imagemap img {
+      display: block; 
+      width: 30%; 
+      height: auto;
+    }
+    .svg-overlay {
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      width: 110%; 
+      height: 100%; 
+      pointer-events: none;
+    }
+    .area {
+      stroke-width: 1; 
+      pointer-events: all; 
+      transition: fill 0.15s ease-in-out, stroke 0.15s ease-in-out;
+    }
+    .hide{
+      display: none;
+    }
+
+  //Fill in the src for the state svg
+  img(src="https://upload.wikimedia.org/wikipedia/commons/archive/1/13/20211014044037%21Blank_California_Map.svg" alt="Map" usemap="#image-map" width="400" height="300")
+
+  //Replace id with state map id and fill in the areas as children of the map
+  div(class ="imagemap")
+    map(name="image-map" id="CAmap")
+      <area shape="poly" coords="17,0,55,2,52,10,44,15,46,27,43,32,48,44,46,49,40,49,40,43,23,43,19,22,14,18,14,15,17,11"  nohref="nohref" title="Del Norte" id="Del Norte"/>
+      <area shape="poly" coords="55,2,172,6,171,69,112,68,110,59,113,56,108,53,93,65,85,66,84,74,88,77,87,81,80,79,75,74,68,74,66,68,59,66,57,61,56,49,46,49,48,44,43,32,46,27,44,15,52,10"  nohref="nohref" title="Siskiyou" id="Siskiyou"/>
+      <area shape="poly" coords="172,6,255,7,254,69,171,69"  nohref="nohref" title="Modoc" id="Modoc"/>
+      <area shape="poly" coords="254,69,178,69,177,125,193,125,193,141,200,144,203,144,203,141,209,135,218,138,234,151,240,152,243,159,248,166,247,179,245,183,254,183"  nohref="nohref" title="Lassen" id="Lassen"/>
+      <area shape="poly" coords="178,69,114,68,114,74,109,75,109,80,104,83,104,91,101,94,101,98,97,101,96,105,99,113,81,125,76,131,76,134,94,129,101,132,109,129,129,129,137,126,177,125"  nohref="nohref" title="Shasta" id="Shasta"/>
+      <area shape="poly" coords="113,56,108,53,93,65,85,66,84,74,88,77,87,81,80,79,75,74,68,74,66,68,59,66,56,73,59,77,54,85,51,83,46,85,50,93,48,157,83,159,81,138,76,136,76,131,81,125,99,113,96,106,97,101,101,98,101,94,104,91,104,83,109,80,109,75,114,74,114,68,112,68,110,59"  nohref="nohref" title="Trinity" id="Trinity"/>
+      <area shape="poly" coords="56,49,40,49,40,43,23,43,23,50,19,65,18,75,19,75,19,79,1,115,1,122,3,128,3,136,14,146,18,148,18,154,48,156,50,93,46,85,51,83,54,85,59,77,56,73,59,66,57,60"  nohref="nohref" title="Humboldt" id="Humboldt"/>
+      <area shape="poly" coords="168,125,137,126,129,129,109,129,101,132,94,129,76,134,76,136,81,138,83,159,84,164,82,170,83,173,134,175,134,168,150,168,154,160,158,160,162,152,167,152,171,149,171,144,175,143,175,134,172,132,168,132"  nohref="nohref" title="Tehama" id="Tehama"/>
+      <area shape="poly" coords="245,183,247,179,248,166,243,159,240,152,234,151,218,138,209,135,203,141,203,144,200,144,193,141,193,125,168,125,168,132,172,132,175,134,175,143,171,144,171,149,174,153,171,158,172,169,191,190,199,184,199,180,203,177,206,181,215,185,217,183"  nohref="nohref" title="Plumas" id="Plumas"/>
+      <area shape="poly" coords="254,183,217,183,215,185,206,181,203,177,199,180,199,184,194,188,194,207,212,201,215,197,219,197,224,203,254,203"  nohref="nohref" title="Sierra" id="Sierra"/>
+      <area shape="poly" coords="191,190,172,169,171,158,174,153,171,149,167,152,162,152,158,160,154,160,150,168,134,168,134,175,141,181,136,195,145,195,142,213,164,214,174,208,178,197,187,196"  nohref="nohref" title="Butte" id="Butte"/>
+      <area shape="poly" coords="143,206,145,195,136,195,141,181,134,175,83,173,83,177,85,180,85,190,94,190,94,205"  nohref="nohref" title="Glenn" id="Glenn"/>
+      <area shape="poly" coords="85,190,85,180,83,177,83,173,82,170,84,164,83,159,48,157,48,156,18,154,23,157,30,169,31,177,33,180,34,192,31,196,30,207,33,218,35,222,37,233,34,236,34,239,45,251,56,249,68,248,73,246,87,246,79,240,79,235,72,229,73,220,79,216,74,202,75,195,85,194"  nohref="nohref" title="Mendocino" id="Mendocino"/>
+      <area shape="poly" coords="94,190,85,190,85,194,75,195,74,203,79,216,73,220,72,229,79,235,79,240,88,247,95,257,99,259,107,259,113,248,111,243,113,241,111,233,107,231,108,221,105,218,96,218,91,211,94,205"  nohref="nohref" title="Lake" id="Lake"/>
+      <area shape="poly" coords="143,206,94,205,91,211,96,218,105,218,108,221,107,231,111,233,113,241,145,241,147,237,145,231,143,230,139,225,140,217,142,213"  nohref="nohref" title="Colusa" id="Colusa"/>
+      <area shape="poly" coords="158,214,142,213,140,217,139,225,143,230,145,231,147,237,145,241,152,248,152,252,154,254,158,252,159,256,167,257,167,242,170,242,170,236,167,237,161,241"  nohref="nohref" title="Sutter" id="Sutter"/>
+      <area shape="poly" coords="194,188,191,190,187,196,178,197,174,208,164,214,158,214,161,241,167,237,170,236,178,233,179,218,189,207,194,207" href="https://" title="Yuba" id="Yuba"/>
+      <area shape="poly" coords="254,203,224,203,219,197,215,197,212,201,194,207,189,207,179,218,178,234,184,236,187,233,189,236,192,236,198,226,215,213,254,213"  nohref="nohref" title="Nevada" id="Nevada"/>
+      <area shape="poly" coords="254,213,215,213,198,226,192,236,189,236,187,233,184,236,178,234,178,233,170,236,170,242,167,242,167,257,186,259,192,244,206,237,209,237,220,244,227,240,227,236,243,235,246,232,254,232"  nohref="nohref" title="Placer" id="Placer"/>
+      <area shape="poly" coords="254,232,246,232,243,235,227,236,227,240,220,244,209,237,206,237,192,244,186,259,193,274,201,274,203,271,210,271,216,275,224,275,238,271,242,266,245,266,247,261,250,261,263,245,254,238"  nohref="nohref" title="El Dorado" id="El Dorado"/>
+      <area shape="poly" coords="186,259,159,256,158,262,164,268,164,273,161,274,163,277,163,285,158,290,158,298,154,300,153,305,159,305,163,299,166,294,184,294,193,291,193,274"  nohref="nohref" title="Sacramento" id="Sacramento"/>
+      <area shape="poly" coords="158,290,163,285,163,277,161,274,164,273,164,268,158,262,159,256,158,252,154,254,152,252,152,248,145,241,113,241,111,243,113,248,118,248,124,262,129,274,141,272,153,272,153,290"  nohref="nohref" title="Yolo" id="Yolo"/>
+      <area shape="poly" coords="129,274,118,248,113,248,107,259,99,259,97,266,105,277,111,289,114,298,123,301,123,288,131,288,127,281,128,277"  nohref="nohref" title="Napa" id="Napa"/>
+      <area shape="poly" coords="114,298,111,289,105,277,97,266,99,259,95,257,87,246,73,246,68,248,56,249,45,251,56,268,68,278,71,287,81,287,92,296,100,298,105,303,109,303,109,301"  nohref="nohref" title="Sonoma" id="Sonoma"/>
+      <area shape="poly" coords="105,303,100,298,92,296,81,287,71,287,75,289,78,294,79,300,74,311,76,312,80,309,85,311,92,319,94,319,104,326,108,321,106,317"  nohref="nohref" title="Marin" id="Marin"/>
+      <area shape="poly" coords="153,305,154,300,158,298,158,290,153,290,153,272,140,272,129,274,127,281,131,288,123,288,123,301,119,300,119,307,127,309,131,302,135,302,135,306,140,308,147,308"  nohref="nohref" title="Solano" id="Solano"/>
+      <area shape="poly" coords="250,261,247,261,245,266,242,266,238,271,224,275,216,275,210,271,203,271,201,274,193,274,193,291,195,297,201,296,206,292,208,292,215,288,218,284,229,278,237,278,240,276,250,276"  nohref="nohref" title="Amador" id="Amador"/>
+      <area shape="poly" coords="263,245,278,260,276,268,280,276,279,283,275,289,272,287,272,283,267,283,261,287,250,280,250,261"  nohref="nohref" title="Alpine" id="Alpine"/>
+      <area shape="poly" coords="278,260,276,268,280,276,279,283,275,289,276,300,285,306,293,308,295,313,295,318,301,323,301,331,298,334,300,336,305,335,310,339,312,347,317,348,323,355,386,355"  nohref="nohref" title="Mono" id="Mono"/>
+      <area shape="poly" coords="298,334,301,331,301,323,295,318,295,313,293,308,285,306,276,300,275,289,272,287,272,283,267,283,261,287,252,281,244,285,225,314,222,314,222,319,214,327,230,342,235,340,233,336,249,328,258,333,267,333,280,322,284,325"  nohref="nohref" title="Tuolumne" id="Tuolumne"/>
+      <area shape="poly" coords="252,281,244,285,225,314,222,314,222,319,214,327,199,310,195,297,201,296,206,292,208,292,215,288,218,284,229,278,237,278,240,276,250,276,250,280"  nohref="nohref" title="Calaveras" id="Calaveras"/>
+      <area shape="poly" coords="199,310,193,291,184,294,166,294,159,305,160,349,165,353,181,338,192,333,198,334"  nohref="nohref" title="San Joaquin" id="San Joaquin"/>
+      <area shape="poly" coords="159,305,153,305,147,308,149,310,153,310,153,313,134,308,130,310,120,309,113,312,110,316,111,319,118,320,124,328,132,328,134,334,160,329"  nohref="nohref" title="Contra Costa" id="Contra Costa"/>
+      <area shape="poly" coords="159,329,134,334,132,328,124,328,118,320,116,320,115,329,122,332,122,335,125,339,126,347,134,354,165,353,160,349"  nohref="nohref" title="Alameda" id="Alameda"/>
+      <area shape="poly" coords="110,327,104,327,104,335,111,335,111,327"  nohref="nohref" title="San Francisco" id="San Francisco"/>
+      <area shape="poly" coords="111,335,104,335,104,343,103,344,103,349,106,352,109,360,108,373,113,380,113,375,123,373,124,367,121,362,121,356,127,354,118,346,111,341"  nohref="nohref" title="San Mateo" id="San Mateo"/>
+      <area shape="poly" coords="127,354,121,356,121,362,124,367,130,375,148,388,159,398,164,391,179,394,179,378,168,378,166,368,169,366,167,360,166,359,165,353"  nohref="nohref" title="Santa Clara" id="Santa Clara"/>
+      <area shape="poly" coords="199,310,198,334,192,333,181,338,165,353,166,359,167,360,169,366,166,368,168,378,179,378,179,381,195,365,194,361,230,342,214,327"  nohref="nohref" title="Stanislaus" id="Stanislaus"/>
+      <area shape="poly" coords="295,332,280,322,267,333,258,333,249,328,233,336,235,340,230,342,240,366,244,373,251,377,267,360,275,359,279,352,279,348"  nohref="nohref" title="Mariposa" id="Mariposa"/>
+      <area shape="poly" coords="295,332,279,348,279,352,275,359,267,360,250,377,237,379,225,384,220,389,225,399,233,409,239,409,248,405,265,403,270,392,280,386,280,381,290,380,294,377,294,365,312,347,310,339,305,335,300,336"  nohref="nohref" title="Madera" id="Madera"/>
+      <area shape="poly" coords="386,355,327,355,327,366,332,367,334,381,340,382,347,386,353,400,352,410,358,424,369,442,369,452,372,455,372,460,376,474,376,484,383,482,515,480,521,478"  nohref="nohref" title="Inyo" id="Inyo"/>
+      <area shape="poly" coords="352,410,353,400,347,386,340,382,334,381,332,367,327,366,327,355,323,355,317,348,312,347,294,365,294,377,290,380,280,381,280,386,270,392,265,403,248,405,239,409,233,409,225,399,220,389,197,411,217,430,217,442,212,445,212,449,215,453,212,457,214,460,226,471,231,471,234,475,255,455,255,437,269,437,273,436,287,424,295,424,295,418,314,418,314,411"  nohref="nohref" title="Fresno" id="Fresno"/>
+      <area shape="poly" coords="251,377,244,373,240,366,230,342,194,361,195,365,179,381,179,397,186,404,197,411,225,384,237,379"  nohref="nohref" title="Merced" id="Merced"/>
+      <area shape="poly" coords="159,398,149,389,130,375,124,367,123,373,113,375,113,379,125,393,135,393,137,392,145,400,149,397"  nohref="nohref" title="Santa Cruz" id="Santa Cruz"/>
+      <area shape="poly" coords="153,398,149,397,145,400,146,412,142,420,137,418,134,421,137,425,138,442,143,450,145,450,155,461,157,466,161,468,165,478,172,484,240,485,234,475,231,471,226,471,214,460,212,457,215,453,209,445,210,453,207,452,199,445,191,448,189,442,177,429,174,429,172,419,163,414,163,409,159,407"  nohref="nohref" title="Monterey" id="Monterey"/>
+      <area shape="poly" coords="209,445,210,453,207,452,199,445,191,448,189,442,177,429,174,429,172,419,163,414,163,409,159,407,152,397,159,398,164,391,179,394,179,397,186,404,197,411,217,430,217,442,212,445,212,449"  nohref="nohref" title="San Benito" id="San Benito"/>
+      <area shape="poly" coords="281,429,273,436,269,437,255,437,255,455,234,475,240,485,282,485,282,449,286,449,286,437,282,437,282,431"  nohref="nohref" title="Kings" id="Kings"/>
+      <area shape="poly" coords="352,410,314,411,314,418,295,418,295,424,287,424,281,429,282,431,282,437,286,437,286,449,282,449,282,485,376,484,376,474,372,461,372,455,369,452,369,442,358,424"  nohref="nohref" title="Tulare" id="Tulare"/>
+      <area shape="poly" coords="620,590,613,600,603,605,602,608,547,610,546,613,446,617,445,620,408,618,399,630,391,623,395,618,400,601,398,558,400,557,399,482,515,480,521,478,587,537,587,547,593,556,598,558,600,565,604,574,604,578,614,583"  nohref="nohref" title="San Bernardino" id="San Bernardino"/>
+      <area shape="poly" coords="399,482,383,482,376,484,241,485,241,498,248,498,248,505,254,511,260,511,260,518,265,518,265,525,274,525,274,532,280,532,280,539,286,539,286,554,297,554,301,560,398,558,400,556"  nohref="nohref" title="Kern" id="Kern"/>
+      <area shape="poly" coords="286,554,286,539,280,539,280,532,274,532,274,525,265,525,265,518,260,518,260,511,254,511,248,505,248,498,241,498,241,485,172,484,172,492,179,496,183,496,187,505,193,510,198,512,202,518,198,522,198,529,206,534,211,533,214,537,213,543,212,548,223,546,234,552,232,545,241,543,247,537"  nohref="nohref" title="San Luis Obispo" id="San Luis Obispo"/>
+      <area shape="poly" coords="286,554,247,537,241,543,232,545,234,552,223,546,212,548,211,552,215,557,213,564,215,568,212,579,218,580,224,588,244,586,259,590,280,590,286,594,288,587,288,555"  nohref="nohref" title="Santa Barbara" id="Santa Barbara"/>
+      <area shape="poly" coords="288,554,288,587,286,594,299,603,300,610,319,619,327,610,337,609,337,604,339,603,323,560,301,560,297,554"  nohref="nohref" title="Ventura" id="Ventura"/>
+      <area shape="poly" coords="391,623,395,618,400,601,398,558,323,560,339,603,337,604,337,609,327,610,319,619,328,622,334,619,345,619,350,625,355,636,351,640,352,642,361,644,363,639,372,641,375,633,380,629,380,626,393,625"  nohref="nohref" title="Los Angeles" id="Los Angeles"/>
+      <area shape="poly" coords="399,630,393,625,380,626,380,629,375,633,372,641,383,652,386,651,405,667,406,663,411,661,411,656,416,647,412,644,408,643,408,639,406,639"  nohref="nohref" title="Orange" id="Orange"/>
+      <area shape="poly" coords="602,608,547,610,546,613,446,617,445,620,408,618,399,630,406,639,408,639,408,643,412,644,416,647,411,656,411,659,420,659,428,663,528,661,592,658,598,648,599,638,600,636,598,628,599,623,598,618,601,614"  nohref="nohref" title="Riverside" id="Riverside"/>
+      <area shape="poly" coords="592,658,529,661,501,662,502,724,589,713,600,711,606,701,606,692,600,688,592,688,589,684,591,680,591,670,588,662"  nohref="nohref" title="Imperial" id="Imperial"/>
+      <area shape="poly" coords="502,724,501,661,428,663,420,659,411,659,411,661,406,663,405,667,417,680,423,690,428,706,425,710,427,714,428,720,434,726,437,732"  nohref="nohref" title="San Diego" id="San Diego"/>
+    div(class="hide" id="display")
+
+  table(class="table table-bordered")
+    thead
+      tr
+        th(scope="col") Key
+        th(scope="col") > 30
+        th(scope="col") 30 - 20
+        th(scope="col") 20 - 10
+        th(scope="col") 10 - 5
+        th(scope="col") 5 - 2.5
+        th(scope="col") 2.5 - 1
+        th(scope="col") Less than 1
+        th(scope="col") 0
+    tbody
+      tr
+        th(scope="row") Color
+        td
+          img(src="/images/darkgreen.png", alt="Green Square", height="25", width="25")
+        td
+          img(src="/images/lightGreen.png", alt="", height="25", width="25")
+        td
+          img(src="/images/yellow.png", alt="", height="25", width="25")
+        td
+          img(src="/images/lightYellow.png", alt="", height="25", width="25")
+        td
+          img(src="/images/darkOrange.png", alt="", height="25", width="25")
+        td
+          img(src="/images/lightOrangepng.png", alt="", height="25", width="25")
+        td
+          img(src="/images/red.png", alt="", height="25", width="25")
+        td
+          img(src="/images/darkRed.png", alt="", height="25", width="25")
+
+  div
+    -
+      let moForestRes = `dispatch(\"missouriForestResidues\")`
+      let iaForestRes = `dispatch(\"iowaForestResidues\")`
+      let ksForestRes = `dispatch(\"kansasForestResidues\")`
+      let arForestRes = `dispatch(\"arkansasForestResidues\")`
+      let ndForestRes = `dispatch(\"northDakotaForestResidues\")`
+      let okForestRes = `dispatch(\"oklahomaForestResidues\")`
+      let neForestRes = `dispatch(\"nebraskaForestResidues\")`
+      let ilForestRes = `dispatch(\"illinoisForestResidues\")`
+      let kyForestRes = `dispatch(\"kentuckyForestResidues\")`
+      let tnForestRes = `dispatch(\"tennesseeForestResidues\")`
+      let msForestRes = `dispatch(\"mississippiForestResidues\")`
+      let meForestRes = `dispatch(\"maineForestResidues\")`
+      let nhForestRes = `dispatch(\"newHampshireForestResidues\")`
+      let vtForestRes = `dispatch(\"vermontForestResidues\")`
+      let maForestRes = `dispatch(\"massachusettsForestResidues\")`
+      let nyForestRes = `dispatch(\"newYorkForestResidues\")`
+      let riForestRes = `dispatch(\"rhodeIslandForestResidues\")`
+      let ctForestRes = `dispatch(\"connecticutForestResidues\")`
+      let njForestRes = `dispatch(\"newJerseyForestResidues\")`
+      let paForestRes = `dispatch(\"pennsylvaniaForestResidues\")`
+      let deForestRes = `dispatch(\"delawareForestResidues\")`
+      let mdForestRes = `dispatch(\"marylandForestResidues\")`
+      let vaForestRes = `dispatch(\"virginiaForestResidues\")`
+      let ncForestRes = `dispatch(\"northCarolinaForestResidues\")`
+      let scForestRes = `dispatch(\"southCarolinaForestResidues\")`
+      let gaForestRes = `dispatch(\"georgiaForestResidues\")`
+      let alForestRes = `dispatch(\"alabamaForestResidues\")`
+      let wvForestRes = `dispatch(\"westVirginiaForestResidues\")`
+      let ohForestRes = `dispatch(\"ohioForestResidues\")`
+      let miForestRes = `dispatch(\"michiganForestResidues\")`
+      let inForestRes = `dispatch(\"indianaForestResidues\")`
+      let flForestRes = `dispatch(\"floridaForestResidues\")`
+      let wiForestRes = `dispatch(\"wisconsinForestResidues\")`
+      let mnForestRes = `dispatch(\"minnesotaForestResidues\")`
+      let sdForestRes = `dispatch(\"southDakotaForestResidues\")`
+      let mtForestRes = `dispatch(\"montanaForestResidues\")`
+      let wyForestRes = `dispatch(\"wyomingForestResidues\")`
+      let coForestRes = `dispatch(\"coloradoForestResidues\")`
+      let nwForestRes = `dispatch(\"newMexicoForestResidues\")`
+      let txForestRes = `dispatch(\"texasForestResidues\")`
+      let azForestRes = `dispatch(\"arizonaForestResidues\")`
+      let utForestRes = `dispatch(\"utahForestResidues\")`
+      let idForestRes = `dispatch(\"idahoForestResidues\")`
+      let waForestRes = `dispatch(\"washingtonForestResidues\")`
+      let orForestRes = `dispatch(\"oregonForestResidues\")`
+      let nvForestRes = `dispatch(\"nevadaForestResidues\")`
+      let caForestRes = `dispatch(\"californiaForestResidues\")`
+      let laForestRes = `dispatch(\"louisianaForestResidues\")`
+      let akForestRes = `dispatch(\"alaskaForestResidues\")`
+      let hiForestRes = `dispatch(\"hawaiiForestResidues\")`
+    div
+      button(type="button" class="btn btn-success" onClick=alForestRes) Go to Alabama Forest Residue
+      button(type="button" class="btn btn-primary" onClick=akForestRes) Go to Alaska Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=azForestRes) Go to Arizona Forest Residues 
+      br
+      button(type="button" class="btn btn-success" onClick=arForestRes) Go to Arkansas Forest Residues
+      button(type="button" class="btn btn-primary" onClick=caForestRes) Go to California Forest Residues
+      button(type="button" class="btn btn-primary" onClick=coForestRes) Go to Colorado Forest Residue
+      br
+      button(type="button" class="btn btn-primary" onClick=ctForestRes) Go to Connecticut Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=deForestRes) Go to Delaware Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=flForestRes) Go to Florida Forest Residues
+      br
+      button(type="button" class="btn btn-primary" onClick=gaForestRes) Go to Georgia Forest Residues
+      button(type="button" class="btn btn-primary" onClick=hiForestRes) Go to Hawaii Forest Residue
+      button(type="button" class="btn btn-primary" onClick=idForestRes) Go to Idaho Forest Residues 
+      br
+      button(type="button" class="btn btn-primary" onClick=ilForestRes) Go to Illinois Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=inForestRes) Go to Indiana Forest Residues
+      button(type="button" class="btn btn-success" onClick=iaForestRes) Go to Iowa Forest Residues
+      br
+      button(type="button" class="btn btn-success" onClick=ksForestRes) Go to Kansas Forest Residue
+      button(type="button" class="btn btn-primary" onClick=kyForestRes) Go to Kentucky Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=laForestRes) Go to Louisiana Forest Residues 
+      br
+      button(type="button" class="btn btn-primary" onClick=meForestRes) Go to Maine Forest Residues
+      button(type="button" class="btn btn-primary" onClick=mdForestRes) Go to Maryland Forest Residues
+      button(type="button" class="btn btn-primary" onClick=maForestRes) Go to Massachusettes Forest Residue
+      br
+      button(type="button" class="btn btn-primary" onClick=miForestRes) Go to Michigan Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=mnForestRes) Go to Minnesota Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=msForestRes) Go to Mississippi Forest Residues
+      br
+      button(type="button" class="btn btn-success" onClick=moForestRes) Go to Missouri Forest Residues
+      button(type="button" class="btn btn-primary" onClick=mtForestRes) Go to Montana Forest Residue
+      button(type="button" class="btn btn-primary" onClick=neForestRes) Go to Nebraska Forest Residues 
+      br
+      button(type="button" class="btn btn-primary" onClick=nvForestRes) Go to Nevada Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=nhForestRes) Go to New Hampshire Forest Residues
+      button(type="button" class="btn btn-primary" onClick=njForestRes) Go to New Jersey Forest Residues
+      br
+      button(type="button" class="btn btn-primary" onClick=nmForestRes) Go to New Mexico Forest Residue
+      button(type="button" class="btn btn-primary" onClick=nyForestRes) Go to New York Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=ncForestRes) Go to North Carolina Forest Residues 
+      br
+      button(type="button" class="btn btn-primary" onClick=ndForestRes) Go to North Dakota Forest Residues
+      button(type="button" class="btn btn-primary" onClick=ohForestRes) Go to Ohio Forest Residues
+      button(type="button" class="btn btn-primary" onClick=okForestRes) Go to Oklahoma Forest Residue
+      br
+      button(type="button" class="btn btn-primary" onClick=orForestRes) Go to Orgeon Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=paForestRes) Go to Pennsylvania Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=riForestRes) Go to Rhode Island Forest Residues
+      br
+      button(type="button" class="btn btn-primary" onClick=scForestRes) Go to South Carolina Forest Residues
+      button(type="button" class="btn btn-primary" onClick=sdForestRes) Go to South Dakota Forest Residue
+      button(type="button" class="btn btn-primary" onClick=tnForestRes) Go to Tennessee Forest Residues 
+      br
+      button(type="button" class="btn btn-primary" onClick=txForestRes) Go to Texas Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=utForestRes) Go to Utah Forest Residues
+      button(type="button" class="btn btn-primary" onClick=vtForestRes) Go to Vermont Forest Residues
+      br
+      button(type="button" class="btn btn-primary" onClick=vaForestRes) Go to Virginia Forest Residue
+      button(type="button" class="btn btn-primary" onClick=waForestRes) Go to Washington Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=wvForestRes) Go to West Virginia Forest Residues 
+      br
+      button(type="button" class="btn btn-primary" onClick=wiForestRes) Go to Wisconsin Forest Residues
+      button(type="button" class="btn btn-primary" onClick=wyForestRes) Go to Wyoming Forest Residues
+
+    script.
+      function dispatch(path){
+        window.location.href=path
+      }  
+
+  script.
+    function toDict(keys, values){
+      var returnDict = []
+      for (let i = 0; i < keys.length; i++){
+        returnDict.push({key: keys[i], value: values[i]});
+      }
+      return returnDict;
+    }
+    
+    // Creating arrays for each attribute from the CSV
+    var countyText = "#{Counties}";
+    var countyArray = countyText.split(",");
+
+    var stateText = "#{States}";
+    var stateArray = stateText.split(",");
+
+    var tdtText = "#{TDT}";
+    var tdtArray = tdtText.split(",");
+
+    // Arrays to hold County data
+    var testCounties = []
+    var testCountiesTDT = []
+
+    // Populating the arrays
+    for (let s = 0; s < stateArray.length; s++){
+      // Replace with state name
+      if (stateArray[s] == "California"){
+        testCounties.push(countyArray[s])
+        testCountiesTDT.push(tdtArray[s])
+      }
+    }
+
+    // Creating the dictonary
+    var finalDict = toDict(testCounties, testCountiesTDT)
+
+    // Event Listener for hover of each area
+    document.addEventListener('DOMContentLoaded', function() {
+      var images = document.querySelectorAll('img[usemap]');
+      images.forEach(function(image) {
+        var mapid = image.getAttribute('usemap').substr(1);
+        var imagewidth = image.naturalWidth;
+        var imageheight = image.naturalHeight;
+        var imagemap = document.querySelector('map[name="'+mapid+'"]');
+        var areas = imagemap.querySelectorAll('area');
+        image.removeAttribute('usemap');
+        imagemap.remove();
+        
+        // create wrapper container
+        var wrapper = document.createElement('div');
+        wrapper.classList.add('imagemap');
+        image.parentNode.insertBefore(wrapper, image);
+        wrapper.appendChild(image);
+        
+        // create SVG overlay
+        var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('viewBox', `0 0 ${imagewidth} ${imageheight}`);
+        svg.setAttribute('class', 'svg-overlay');
+        wrapper.appendChild(svg);
+        
+        areas.forEach(function(area) {
+          var coords = area.getAttribute('coords').split(',').map(Number);
+          if (area.getAttribute('shape') === 'poly') {
+            var pointsAttr = '';
+            for (var i = 0; i < coords.length; i += 2) {
+              var x = coords[i] - 825;
+              var y = coords[i + 1] - 1;
+              pointsAttr += `${x},${y} `;
+            }
+            var polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+            polygon.setAttribute('points', pointsAttr.trim());
+            polygon.setAttribute('class', 'area');
+            polygon.setAttribute('data-href', area.getAttribute('href'));
+            polygon.setAttribute('title', area.getAttribute('title'));
+
+            for (let i = 0; i < finalDict.length; i++){
+              if (finalDict[i].key === area.getAttribute('title') && finalDict[i].value > 30){
+                polygon.setAttribute('fill', 'rgba(38, 106, 46, 1)');
+                polygon.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+                break;
+              }
+              else if (finalDict[i].key === area.getAttribute('title') && finalDict[i].value > 20){
+                polygon.setAttribute('fill', 'rgba(153, 204, 0, 1)');
+                polygon.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+                break;
+              }
+              else if (finalDict[i].key === area.getAttribute('title') && finalDict[i].value > 10){
+                polygon.setAttribute('fill', 'rgba(255, 204, 0, 1)');
+                polygon.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+                break;
+              }
+              else if (finalDict[i].key === area.getAttribute('title') && finalDict[i].value > 5){
+                polygon.setAttribute('fill', 'rgba(255, 255, 102, 1)');
+                polygon.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+                break;
+              }
+              else if (finalDict[i].key === area.getAttribute('title') && finalDict[i].value > 2.5){
+                polygon.setAttribute('fill', 'rgba(255, 102, 0, 1)');
+                polygon.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+                break;
+              }
+              else if (finalDict[i].key === area.getAttribute('title') && finalDict[i].value > 1){
+                polygon.setAttribute('fill', 'rgba(255, 153, 0, 1)');
+                polygon.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+                break;
+              }
+              else if (finalDict[i].key === area.getAttribute('title') && finalDict[i].value > 0){
+                polygon.setAttribute('fill', 'rgba(255, 0, 0, 1)');
+                polygon.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+                break;
+              }
+              else {
+                polygon.setAttribute('fill', 'rgba(204, 0, 0, 1)');
+                polygon.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+              }
+              
+            }
+
+            polygon.addEventListener('mouseover', showInfo);
+            polygon.addEventListener('mouseout', hideInfo);
+            svg.appendChild(polygon);
+          }
+        });
+        
+        // Add click event listener to SVG polygons
+        svg.addEventListener('click', function(event) {
+          if (event.target.tagName === 'polygon') {
+            var href = event.target.getAttribute('data-href');
+            if (href) {
+              window.location.href = href;
+            }
+          }
+        });
+      });
+    });
+    // Show and Hide Functions
+    function showInfo(event){
+      let county = event.target.attributes.title.nodeValue;
+          
+      document.getElementById("display").innerHTML = county + " ";
+
+      for (let i = 0; i < finalDict.length; i++){
+        if (finalDict[i].key == county){
+          document.getElementById("display").innerHTML += finalDict[i].value
+        }
+      }
+
+      document.querySelector('.hide').style.display = 'block';
+
+    }
+    function hideInfo(){
+      document.querySelector('.hide').style.display = 'none';
+    }

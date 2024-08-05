@@ -20,6 +20,7 @@ var arforestResiduesRouter = require('./routes/arkansasForestResidues')
 var alForestResiduesRouter = require('./routes/alabamaForestResidues')
 var akForestResiduesRouter = require('./routes/alaskaForestResidues')
 var azForestResiduesRouter = require('./routes/arizonaForestResidues')
+var caForestResiduesRouter = require('./routes/californiaForestResidues')
 
 var app = express();
 
@@ -46,6 +47,7 @@ app.use('/arkansasForestResidues', arforestResiduesRouter)
 app.use('/alabamaForestResidues', alForestResiduesRouter)
 app.use('/alaskaForestResidues', akForestResiduesRouter)
 app.use('/arizonaForestResidues', azForestResiduesRouter)
+app.use('/californiaForestResidues', caForestResiduesRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
