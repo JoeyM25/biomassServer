@@ -1,0 +1,415 @@
+extends layout
+
+block content
+  h1= title
+
+  style.
+    .imagemap {
+      position: relative; 
+      display: inline-block; 
+      width: 100%; 
+      height: auto;
+    }
+    .imagemap img {
+      display: block; 
+      width: 50%; 
+      height: auto;
+    }
+    .svg-overlay {
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      width: 110%; 
+      height: 107%; 
+      pointer-events: none;
+    }
+    .area {
+      stroke-width: 1; 
+      pointer-events: all; 
+      transition: fill 0.15s ease-in-out, stroke 0.15s ease-in-out;
+    }
+    .hide{
+      display: none;
+    }
+
+  //Fill in the src for the state svg
+  img(src="https://upload.wikimedia.org/wikipedia/commons/7/78/Blank_map_of_Colorado.svg" alt="Map" usemap="#image-map" width="400" height="300")
+
+  //Replace id with state map id and fill in the areas as children of the map
+  div(class ="imagemap")
+    map(name="image-map" id="")
+      <area shape="poly" coords="84,40,229,44,229,88,225,88,225,94,219,94,218,129,82,126"  nohref="nohref" title="Moffat" id="Moffat"/>
+      <area shape="poly" coords="229,44,268,44,266,51,277,58,281,58,286,67,279,88,284,105,285,163,251,163,251,129,218,130,219,95,224,95,225,88,229,88"  nohref="nohref" title="Routt" id="Routt"/>
+      <area shape="poly" coords="268,44,323,45,323,53,335,68,348,98,351,101,348,103,346,110,343,117,336,115,320,119,317,116,300,117,299,111,292,114,287,113,284,107,279,88,286,66,280,58,277,58,266,51"  nohref="nohref" title="Jackson" id="Jackson"/>
+      <area shape="poly" coords="323,45,426,45,427,117,417,117,417,126,367,127,362,119,357,115,355,104,351,101,348,97,335,67,323,54"  nohref="nohref" title="Larimer" id="Larimer"/>
+      <area shape="poly" coords="427,45,540,43,541,96,493,96,494,153,426,154,426,150,423,150,422,154,418,154,417,117,427,117"  nohref="nohref" title="Weld" id="Weld"/>
+      <area shape="poly" coords="539,43,617,41,617,103,550,106,550,96,541,95"  nohref="nohref" title="Logan" id="Logan"/>
+      <area shape="poly" coords="617,41,667,39,668,68,617,68"  nohref="nohref" title="Sedgwick" id="Sedgwick"/>
+      <area shape="poly" coords="668,68,670,100,617,103,617,68"  nohref="nohref" title="Phillips" id="Phillips"/>
+      <area shape="poly" coords="670,100,673,195,609,199,608,103"  nohref="nohref" title="Yuma" id="Yuma"/>
+      <area shape="poly" coords="608,103,550,106,551,153,532,153,532,201,609,198"  nohref="nohref" title="Washington" id="Washington"/>
+      <area shape="poly" coords="550,96,493,96,494,153,552,153"  nohref="nohref" title="Morgan" id="Morgan"/>
+      <area shape="poly" coords="426,150,423,150,422,154,418,154,417,160,409,163,411,166,418,165,421,162"  nohref="nohref" title="Broomfield" id="Broomfield"/>
+      <area shape="poly" coords="417,126,367,127,366,136,369,140,369,151,365,155,366,162,410,164,410,163,417,160,418,154"  nohref="nohref" title="Boulder" id="Boulder"/>
+      <area shape="poly" coords="366,162,365,155,369,151,369,140,366,136,367,127,362,118,357,115,354,104,351,101,348,103,343,117,336,115,320,119,317,116,300,117,299,111,292,114,287,113,284,107,284,164,317,164,322,172,328,172,331,177,336,189,343,189,348,184,348,179,360,177,364,173"  nohref="nohref" title="Grand" id="Grand"/>
+      <area shape="poly" coords="251,129,82,126,80,187,93,187,121,189,121,185,174,186,174,173,217,172,217,164,227,163,227,144,251,144"  nohref="nohref" title="Rio Blanco" id="Rio Blanco"/>
+      <area shape="poly" coords="251,144,227,144,227,163,217,164,217,172,174,173,174,186,121,185,121,189,95,187,80,187,79,220,243,224,244,163,251,163"  nohref="nohref" title="Garfield" id="Garfield"/>
+      <area shape="poly" coords="302,164,244,163,243,224,302,225,304,224,308,225,317,225,320,220,317,212,317,205,320,205,323,194,309,183,305,181"  nohref="nohref" title="Eagle" id="Eagle"/>
+      <area shape="poly" coords="318,223,320,220,317,212,317,205,320,205,323,194,309,183,305,181,302,164,317,164,322,172,328,172,331,178,336,189,343,189,345,192,350,192,357,196,357,199,352,202,353,206,336,225,332,225,330,223"  nohref="nohref" title="Summit" id="Summit"/>
+      <area shape="poly" coords="366,162,390,163,389,183,380,182,374,175,364,172"  nohref="nohref" title="Gilpin" id="Gilpin"/>
+      <area shape="poly" coords="364,172,374,175,380,182,389,183,389,203,352,203,352,202,357,199,357,196,350,192,345,192,343,189,348,184,348,179,360,177"  nohref="nohref" title="Clear Creek" id="Clear Creek"/>
+      <area shape="poly" coords="418,165,411,166,410,164,390,163,389,251,395,250,409,227,409,221,412,218,413,212,416,211,418,203"  nohref="nohref" title="Jefferson" id="Jefferson"/>
+      <area shape="poly" coords="424,154,532,153,532,182,432,184,433,182,446,180,443,175,455,174,455,166,445,165,445,171,441,171,440,177,418,178,418,165,421,162"  nohref="nohref" title="Adams" id="Adams"/>
+      <area shape="poly" coords="418,197,418,178,440,177,441,171,445,171,445,165,455,166,455,174,443,175,446,180,433,182,432,184,433,186,431,190,432,192,436,193,431,196,423,191"  nohref="nohref" title="Denver" id="Denver"/>
+      <area shape="poly" coords="532,182,432,184,433,186,431,190,432,192,436,193,431,196,423,191,418,197,418,203,532,201"  nohref="nohref" title="Arapahoe" id="Arapahoe"/>
+      <area shape="poly" coords="673,195,579,200,581,258,676,253"  nohref="nohref" title="Kit Carson" id="Kit Carson"/>
+      <area shape="poly" coords="579,199,532,201,533,277,504,278,505,315,581,314"  nohref="nohref" title="Lincoln" id="Lincoln"/>
+      <area shape="poly" coords="532,201,451,202,452,251,504,249,504,278,533,277"  nohref="nohref" title="Elbert" id="Elbert"/>
+      <area shape="poly" coords="451,202,418,203,416,211,413,212,412,218,409,222,409,227,395,250,452,251"  nohref="nohref" title="Douglas" id="Douglas"/>
+      <area shape="poly" coords="389,203,352,203,353,206,336,225,332,225,330,223,326,223,326,229,322,230,322,258,323,265,328,266,329,272,336,272,344,279,346,286,342,299,396,298,395,250,389,251"  nohref="nohref" title="Park" id="Park"/>
+      <area shape="poly" coords="326,223,318,223,317,225,308,225,304,224,301,225,301,230,296,231,295,247,290,247,288,258,322,258,322,230,326,229"  nohref="nohref" title="Lake" id="Lake"/>
+      <area shape="poly" coords="301,225,216,223,214,229,220,232,222,244,229,250,247,251,254,257,254,261,261,266,270,267,274,260,282,260,287,266,288,258,290,247,295,247,296,231,301,230"  nohref="nohref" title="Pitkin" id="Pitkin"/>
+      <area shape="poly" coords="216,223,79,220,75,315,133,316,135,280,154,273,159,267,160,264,170,255,182,254,187,259,204,244,206,244,211,238,216,238,220,235,220,232,214,229"  nohref="nohref" title="Mesa" id="Mesa"/>
+      <area shape="poly" coords="211,238,206,244,204,244,187,259,182,254,170,255,160,264,159,267,154,273,135,280,134,298,209,299"  nohref="nohref" title="Delta" id="Delta"/>
+      <area shape="poly" coords="209,299,134,298,133,316,75,315,74,353,169,355,170,348,166,344,159,344,154,335,197,337,197,340,208,340"  nohref="nohref" title="Montrose" id="Montrose"/>
+      <area shape="poly" coords="287,266,282,260,274,260,270,267,261,266,254,261,254,257,247,251,229,250,222,244,220,235,216,238,211,238,208,340,197,340,201,347,202,357,251,357,251,328,317,328,310,320,307,315,306,305,301,302,299,297,302,294,303,284,310,278,310,274,298,274,291,266"  nohref="nohref" title="Gunnison" id="Gunnison"/>
+      <area shape="poly" coords="322,258,288,258,287,266,291,266,298,274,310,274,310,278,303,284,302,294,299,297,301,302,306,305,307,315,310,320,317,328,331,328,334,324,338,324,345,319,348,307,342,299,346,286,344,279,336,272,329,272,328,266,323,265"  nohref="nohref" title="Chaffee" id="Chaffee"/>
+      <area shape="poly" coords="342,299,348,307,345,319,338,324,338,328,355,345,430,345,429,303,404,303,403,298"  nohref="nohref" title="Fremont" id="Fremont"/>
+      <area shape="poly" coords="395,250,421,250,421,279,417,279,418,287,429,287,429,303,404,303,403,298,396,298"  nohref="nohref" title="Teller" id="Teller"/>
+      <area shape="poly" coords="504,249,450,251,421,250,421,279,417,279,418,287,429,287,429,317,505,316"  nohref="nohref" title="El Paso" id="El Paso"/>
+      <area shape="poly" coords="580,258,676,253,678,301,581,304"  nohref="nohref" title="Cheyenne" id="Cheyenne"/>
+      <area shape="poly" coords="678,301,679,339,553,343,552,314,581,314,581,304"  nohref="nohref" title="Kiowa" id="Kiowa"/>
+      <area shape="poly" coords="552,314,505,315,506,357,525,360,544,360,544,354,554,353"  nohref="nohref" title="Crowley" id="Crowley"/>
+      <area shape="poly" coords="505,316,429,317,430,345,420,345,420,381,424,387,455,385,507,402"  nohref="nohref" title="Pueblo" id="Pueblo"/>
+      <area shape="poly" coords="420,345,355,345,366,358,367,364,373,372,373,377,384,386,389,386,397,382,400,385,410,372,415,381,420,381"  nohref="nohref" title="Custer" id="Custer"/>
+      <area shape="poly" coords="384,386,373,377,373,372,367,364,366,358,355,345,338,328,338,324,334,324,331,328,251,328,251,378,261,378,264,382,272,386,277,388,277,392,287,392,287,401,386,402,387,391"  nohref="nohref" title="Saguache" id="Saguache"/>
+      <area shape="poly" coords="251,357,202,357,202,363,208,365,200,375,205,379,205,388,211,395,208,399,208,436,239,436,239,381,251,378"  nohref="nohref" title="Hinsdale" id="Hinsdale"/>
+      <area shape="poly" coords="200,375,208,365,202,363,202,357,201,347,197,340,197,337,154,335,159,344,166,344,170,348,169,355,169,359,174,359,174,372,179,373,187,379,188,383,195,382,195,377"  nohref="nohref" title="Ouray" id="Ouray"/>
+      <area shape="poly" coords="208,413,208,399,211,395,205,388,205,379,200,375,195,377,195,382,188,383,176,397,175,403,166,404,168,412"  nohref="nohref" title="San Juan" id="San Juan"/>
+      <area shape="poly" coords="188,383,187,379,179,373,174,372,174,359,169,359,169,355,74,353,73,382,142,383,146,391,164,387,176,397"  nohref="nohref" title="San Miguel" id="San Miguel"/>
+      <area shape="poly" coords="168,412,166,404,175,403,176,397,164,387,146,391,142,383,73,382,72,425,84,410"  nohref="nohref" title="Dolores" id="Dolores"/>
+      <area shape="poly" coords="166,412,84,410,72,425,70,479,128,481,136,465,136,457,144,448,145,442,153,440,154,436,160,432,162,416"  nohref="nohref" title="Montezuma" id="Montezuma"/>
+      <area shape="poly" coords="208,413,166,412,162,416,160,432,154,436,153,440,145,442,144,448,136,457,136,465,128,481,207,483"  nohref="nohref" title="La Plata" id="La Plata"/>
+      <area shape="poly" coords="261,378,251,378,239,381,239,439,275,439,277,392,277,388,264,382"  nohref="nohref" title="Mineral" id="Mineral"/>
+      <area shape="poly" coords="207,483,208,436,239,436,239,439,278,439,278,459,285,462,285,467,294,485"  nohref="nohref" title="Archuleta" id="Archuleta"/>
+      <area shape="poly" coords="277,392,287,392,287,401,334,401,334,440,275,439"  nohref="nohref" title="Rio Grande" id="Rio Grande"/>
+      <area shape="poly" coords="334,440,278,439,278,459,285,462,285,467,294,485,362,485,357,479,361,464,360,445,334,445"  nohref="nohref" title="Conejos" id="Conejos"/>
+      <area shape="poly" coords="386,402,334,401,334,445,360,445,382,420,384,406"  nohref="nohref" title="Alamosa" id="Alamosa"/>
+      <area shape="poly" coords="384,386,389,386,397,382,400,385,410,372,415,381,420,381,424,387,455,385,481,393,473,401,464,416,464,420,456,429,451,430,451,435,446,439,429,441,415,451,411,451,411,441,413,438,410,432,409,423,408,415,403,415,399,411,386,417,384,421,382,420,384,406,386,401,387,390"  nohref="nohref" title="Huerfano" id="Huerfano"/>
+      <area shape="poly" coords="411,451,411,441,413,438,410,432,408,415,403,415,399,411,386,417,384,421,382,420,360,445,361,464,357,479,362,485,412,485"  nohref="nohref" title="Costilla" id="Costilla"/>
+      <area shape="poly" coords="412,485,411,451,415,451,429,441,446,439,451,435,451,430,456,429,464,420,464,416,473,401,481,393,507,402,507,411,592,411,594,481"  nohref="nohref" title="Las Animas" id="Las Animas"/>
+      <area shape="poly" coords="506,357,507,411,563,411,562,342,554,343,554,353,544,354,544,360,525,360"  nohref="nohref" title="Otero" id="Otero"/>
+      <area shape="poly" coords="619,341,562,343,563,411,621,411"  nohref="nohref" title="Bent" id="Bent"/>
+      <area shape="poly" coords="619,341,679,339,682,407,621,411"  nohref="nohref" title="Prowers" id="Prowers"/>
+      <area shape="poly" coords="682,407,685,479,594,481,592,411,621,411"  nohref="nohref" title="Baca" id="Baca"/>
+    div(class="hide" id="display")
+
+  table(class="table table-bordered")
+    thead
+      tr
+        th(scope="col") Key
+        th(scope="col") > 30
+        th(scope="col") 30 - 20
+        th(scope="col") 20 - 10
+        th(scope="col") 10 - 5
+        th(scope="col") 5 - 2.5
+        th(scope="col") 2.5 - 1
+        th(scope="col") Less than 1
+        th(scope="col") 0
+    tbody
+      tr
+        th(scope="row") Color
+        td
+          img(src="/images/darkgreen.png", alt="Green Square", height="25", width="25")
+        td
+          img(src="/images/lightGreen.png", alt="", height="25", width="25")
+        td
+          img(src="/images/yellow.png", alt="", height="25", width="25")
+        td
+          img(src="/images/lightYellow.png", alt="", height="25", width="25")
+        td
+          img(src="/images/darkOrange.png", alt="", height="25", width="25")
+        td
+          img(src="/images/lightOrangepng.png", alt="", height="25", width="25")
+        td
+          img(src="/images/red.png", alt="", height="25", width="25")
+        td
+          img(src="/images/darkRed.png", alt="", height="25", width="25")
+
+  div
+    -
+      let moForestRes = `dispatch(\"missouriForestResidues\")`
+      let iaForestRes = `dispatch(\"iowaForestResidues\")`
+      let ksForestRes = `dispatch(\"kansasForestResidues\")`
+      let arForestRes = `dispatch(\"arkansasForestResidues\")`
+      let ndForestRes = `dispatch(\"northDakotaForestResidues\")`
+      let okForestRes = `dispatch(\"oklahomaForestResidues\")`
+      let neForestRes = `dispatch(\"nebraskaForestResidues\")`
+      let ilForestRes = `dispatch(\"illinoisForestResidues\")`
+      let kyForestRes = `dispatch(\"kentuckyForestResidues\")`
+      let tnForestRes = `dispatch(\"tennesseeForestResidues\")`
+      let msForestRes = `dispatch(\"mississippiForestResidues\")`
+      let meForestRes = `dispatch(\"maineForestResidues\")`
+      let nhForestRes = `dispatch(\"newHampshireForestResidues\")`
+      let vtForestRes = `dispatch(\"vermontForestResidues\")`
+      let maForestRes = `dispatch(\"massachusettsForestResidues\")`
+      let nyForestRes = `dispatch(\"newYorkForestResidues\")`
+      let riForestRes = `dispatch(\"rhodeIslandForestResidues\")`
+      let ctForestRes = `dispatch(\"connecticutForestResidues\")`
+      let njForestRes = `dispatch(\"newJerseyForestResidues\")`
+      let paForestRes = `dispatch(\"pennsylvaniaForestResidues\")`
+      let deForestRes = `dispatch(\"delawareForestResidues\")`
+      let mdForestRes = `dispatch(\"marylandForestResidues\")`
+      let vaForestRes = `dispatch(\"virginiaForestResidues\")`
+      let ncForestRes = `dispatch(\"northCarolinaForestResidues\")`
+      let scForestRes = `dispatch(\"southCarolinaForestResidues\")`
+      let gaForestRes = `dispatch(\"georgiaForestResidues\")`
+      let alForestRes = `dispatch(\"alabamaForestResidues\")`
+      let wvForestRes = `dispatch(\"westVirginiaForestResidues\")`
+      let ohForestRes = `dispatch(\"ohioForestResidues\")`
+      let miForestRes = `dispatch(\"michiganForestResidues\")`
+      let inForestRes = `dispatch(\"indianaForestResidues\")`
+      let flForestRes = `dispatch(\"floridaForestResidues\")`
+      let wiForestRes = `dispatch(\"wisconsinForestResidues\")`
+      let mnForestRes = `dispatch(\"minnesotaForestResidues\")`
+      let sdForestRes = `dispatch(\"southDakotaForestResidues\")`
+      let mtForestRes = `dispatch(\"montanaForestResidues\")`
+      let wyForestRes = `dispatch(\"wyomingForestResidues\")`
+      let coForestRes = `dispatch(\"coloradoForestResidues\")`
+      let nwForestRes = `dispatch(\"newMexicoForestResidues\")`
+      let txForestRes = `dispatch(\"texasForestResidues\")`
+      let azForestRes = `dispatch(\"arizonaForestResidues\")`
+      let utForestRes = `dispatch(\"utahForestResidues\")`
+      let idForestRes = `dispatch(\"idahoForestResidues\")`
+      let waForestRes = `dispatch(\"washingtonForestResidues\")`
+      let orForestRes = `dispatch(\"oregonForestResidues\")`
+      let nvForestRes = `dispatch(\"nevadaForestResidues\")`
+      let caForestRes = `dispatch(\"californiaForestResidues\")`
+      let laForestRes = `dispatch(\"louisianaForestResidues\")`
+      let akForestRes = `dispatch(\"alaskaForestResidues\")`
+      let hiForestRes = `dispatch(\"hawaiiForestResidues\")`
+    div
+      button(type="button" class="btn btn-success" onClick=alForestRes) Go to Alabama Forest Residue
+      button(type="button" class="btn btn-primary" onClick=akForestRes) Go to Alaska Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=azForestRes) Go to Arizona Forest Residues 
+      br
+      button(type="button" class="btn btn-success" onClick=arForestRes) Go to Arkansas Forest Residues
+      button(type="button" class="btn btn-primary" onClick=caForestRes) Go to California Forest Residues
+      button(type="button" class="btn btn-primary" onClick=coForestRes) Go to Colorado Forest Residue
+      br
+      button(type="button" class="btn btn-primary" onClick=ctForestRes) Go to Connecticut Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=deForestRes) Go to Delaware Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=flForestRes) Go to Florida Forest Residues
+      br
+      button(type="button" class="btn btn-primary" onClick=gaForestRes) Go to Georgia Forest Residues
+      button(type="button" class="btn btn-primary" onClick=hiForestRes) Go to Hawaii Forest Residue
+      button(type="button" class="btn btn-primary" onClick=idForestRes) Go to Idaho Forest Residues 
+      br
+      button(type="button" class="btn btn-primary" onClick=ilForestRes) Go to Illinois Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=inForestRes) Go to Indiana Forest Residues
+      button(type="button" class="btn btn-success" onClick=iaForestRes) Go to Iowa Forest Residues
+      br
+      button(type="button" class="btn btn-success" onClick=ksForestRes) Go to Kansas Forest Residue
+      button(type="button" class="btn btn-primary" onClick=kyForestRes) Go to Kentucky Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=laForestRes) Go to Louisiana Forest Residues 
+      br
+      button(type="button" class="btn btn-primary" onClick=meForestRes) Go to Maine Forest Residues
+      button(type="button" class="btn btn-primary" onClick=mdForestRes) Go to Maryland Forest Residues
+      button(type="button" class="btn btn-primary" onClick=maForestRes) Go to Massachusettes Forest Residue
+      br
+      button(type="button" class="btn btn-primary" onClick=miForestRes) Go to Michigan Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=mnForestRes) Go to Minnesota Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=msForestRes) Go to Mississippi Forest Residues
+      br
+      button(type="button" class="btn btn-success" onClick=moForestRes) Go to Missouri Forest Residues
+      button(type="button" class="btn btn-primary" onClick=mtForestRes) Go to Montana Forest Residue
+      button(type="button" class="btn btn-primary" onClick=neForestRes) Go to Nebraska Forest Residues 
+      br
+      button(type="button" class="btn btn-primary" onClick=nvForestRes) Go to Nevada Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=nhForestRes) Go to New Hampshire Forest Residues
+      button(type="button" class="btn btn-primary" onClick=njForestRes) Go to New Jersey Forest Residues
+      br
+      button(type="button" class="btn btn-primary" onClick=nmForestRes) Go to New Mexico Forest Residue
+      button(type="button" class="btn btn-primary" onClick=nyForestRes) Go to New York Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=ncForestRes) Go to North Carolina Forest Residues 
+      br
+      button(type="button" class="btn btn-primary" onClick=ndForestRes) Go to North Dakota Forest Residues
+      button(type="button" class="btn btn-primary" onClick=ohForestRes) Go to Ohio Forest Residues
+      button(type="button" class="btn btn-primary" onClick=okForestRes) Go to Oklahoma Forest Residue
+      br
+      button(type="button" class="btn btn-primary" onClick=orForestRes) Go to Orgeon Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=paForestRes) Go to Pennsylvania Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=riForestRes) Go to Rhode Island Forest Residues
+      br
+      button(type="button" class="btn btn-primary" onClick=scForestRes) Go to South Carolina Forest Residues
+      button(type="button" class="btn btn-primary" onClick=sdForestRes) Go to South Dakota Forest Residue
+      button(type="button" class="btn btn-primary" onClick=tnForestRes) Go to Tennessee Forest Residues 
+      br
+      button(type="button" class="btn btn-primary" onClick=txForestRes) Go to Texas Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=utForestRes) Go to Utah Forest Residues
+      button(type="button" class="btn btn-primary" onClick=vtForestRes) Go to Vermont Forest Residues
+      br
+      button(type="button" class="btn btn-primary" onClick=vaForestRes) Go to Virginia Forest Residue
+      button(type="button" class="btn btn-primary" onClick=waForestRes) Go to Washington Forest Residues 
+      button(type="button" class="btn btn-primary" onClick=wvForestRes) Go to West Virginia Forest Residues 
+      br
+      button(type="button" class="btn btn-primary" onClick=wiForestRes) Go to Wisconsin Forest Residues
+      button(type="button" class="btn btn-primary" onClick=wyForestRes) Go to Wyoming Forest Residues
+
+    script.
+      function dispatch(path){
+        window.location.href=path
+      }  
+
+  script.
+    function toDict(keys, values){
+      var returnDict = []
+      for (let i = 0; i < keys.length; i++){
+        returnDict.push({key: keys[i], value: values[i]});
+      }
+      return returnDict;
+    }
+    
+    // Creating arrays for each attribute from the CSV
+    var countyText = "#{Counties}";
+    var countyArray = countyText.split(",");
+
+    var stateText = "#{States}";
+    var stateArray = stateText.split(",");
+
+    var tdtText = "#{TDT}";
+    var tdtArray = tdtText.split(",");
+
+    // Arrays to hold County data
+    var testCounties = []
+    var testCountiesTDT = []
+
+    // Populating the arrays
+    for (let s = 0; s < stateArray.length; s++){
+      // Replace with state name
+      if (stateArray[s] == "Colorado"){
+        testCounties.push(countyArray[s])
+        testCountiesTDT.push(tdtArray[s])
+      }
+    }
+
+    // Creating the dictonary
+    var finalDict = toDict(testCounties, testCountiesTDT)
+
+    // Event Listener for hover of each area
+    document.addEventListener('DOMContentLoaded', function() {
+      var images = document.querySelectorAll('img[usemap]');
+      images.forEach(function(image) {
+        var mapid = image.getAttribute('usemap').substr(1);
+        var imagewidth = image.naturalWidth;
+        var imageheight = image.naturalHeight;
+        var imagemap = document.querySelector('map[name="'+mapid+'"]');
+        var areas = imagemap.querySelectorAll('area');
+        image.removeAttribute('usemap');
+        imagemap.remove();
+        
+        // create wrapper container
+        var wrapper = document.createElement('div');
+        wrapper.classList.add('imagemap');
+        image.parentNode.insertBefore(wrapper, image);
+        wrapper.appendChild(image);
+        
+        // create SVG overlay
+        var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('viewBox', `0 0 ${imagewidth} ${imageheight}`);
+        svg.setAttribute('class', 'svg-overlay');
+        wrapper.appendChild(svg);
+        
+        areas.forEach(function(area) {
+          var coords = area.getAttribute('coords').split(',').map(Number);
+          if (area.getAttribute('shape') === 'poly') {
+            var pointsAttr = '';
+            for (var i = 0; i < coords.length; i += 2) {
+              var x = coords[i] - 420;
+              var y = coords[i + 1];
+              pointsAttr += `${x},${y} `;
+            }
+            var polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+            polygon.setAttribute('points', pointsAttr.trim());
+            polygon.setAttribute('class', 'area');
+            polygon.setAttribute('data-href', area.getAttribute('href'));
+            polygon.setAttribute('title', area.getAttribute('title'));
+
+            for (let i = 0; i < finalDict.length; i++){
+              if (finalDict[i].key === area.getAttribute('title') && finalDict[i].value > 30){
+                polygon.setAttribute('fill', 'rgba(38, 106, 46, 1)');
+                polygon.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+                break;
+              }
+              else if (finalDict[i].key === area.getAttribute('title') && finalDict[i].value > 20){
+                polygon.setAttribute('fill', 'rgba(153, 204, 0, 1)');
+                polygon.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+                break;
+              }
+              else if (finalDict[i].key === area.getAttribute('title') && finalDict[i].value > 10){
+                polygon.setAttribute('fill', 'rgba(255, 204, 0, 1)');
+                polygon.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+                break;
+              }
+              else if (finalDict[i].key === area.getAttribute('title') && finalDict[i].value > 5){
+                polygon.setAttribute('fill', 'rgba(255, 255, 102, 1)');
+                polygon.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+                break;
+              }
+              else if (finalDict[i].key === area.getAttribute('title') && finalDict[i].value > 2.5){
+                polygon.setAttribute('fill', 'rgba(255, 102, 0, 1)');
+                polygon.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+                break;
+              }
+              else if (finalDict[i].key === area.getAttribute('title') && finalDict[i].value > 1){
+                polygon.setAttribute('fill', 'rgba(255, 153, 0, 1)');
+                polygon.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+                break;
+              }
+              else if (finalDict[i].key === area.getAttribute('title') && finalDict[i].value > 0){
+                polygon.setAttribute('fill', 'rgba(255, 0, 0, 1)');
+                polygon.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+                break;
+              }
+              else {
+                polygon.setAttribute('fill', 'rgba(204, 0, 0, 1)');
+                polygon.setAttribute('stroke', 'rgba(0, 0, 0, 1)');
+              }
+              
+            }
+
+            polygon.addEventListener('mouseover', showInfo);
+            polygon.addEventListener('mouseout', hideInfo);
+            svg.appendChild(polygon);
+          }
+        });
+        
+        // Add click event listener to SVG polygons
+        svg.addEventListener('click', function(event) {
+          if (event.target.tagName === 'polygon') {
+            var href = event.target.getAttribute('data-href');
+            if (href) {
+              window.location.href = href;
+            }
+          }
+        });
+      });
+    });
+    // Show and Hide Functions
+    function showInfo(event){
+      let county = event.target.attributes.title.nodeValue;
+          
+      document.getElementById("display").innerHTML = county + " ";
+
+      for (let i = 0; i < finalDict.length; i++){
+        if (finalDict[i].key == county){
+          document.getElementById("display").innerHTML += finalDict[i].value
+        }
+      }
+
+      document.querySelector('.hide').style.display = 'block';
+
+    }
+    function hideInfo(){
+      document.querySelector('.hide').style.display = 'none';
+    }
